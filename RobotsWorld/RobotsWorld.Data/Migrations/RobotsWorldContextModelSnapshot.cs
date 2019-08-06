@@ -134,7 +134,8 @@ namespace RobotsWorld.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("RobotId");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -146,11 +147,8 @@ namespace RobotsWorld.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
-
-                    b.Property<decimal>("Price");
-
-                    b.Property<int>("Quantity");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<string>("SubAssemblyId");
 
@@ -168,13 +166,15 @@ namespace RobotsWorld.Data.Migrations
 
                     b.Property<string>("AssemblyId");
 
-                    b.Property<int>("Axis");
+                    b.Property<int>("Axes");
 
                     b.Property<string>("ImageUrl");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-                    b.Property<string>("SerialNumber");
+                    b.Property<string>("SerialNumber")
+                        .IsRequired();
 
                     b.Property<string>("UserId");
 
@@ -196,7 +196,8 @@ namespace RobotsWorld.Data.Migrations
 
                     b.Property<string>("ImageUrl");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<decimal>("Price");
 
@@ -309,7 +310,7 @@ namespace RobotsWorld.Data.Migrations
 
             modelBuilder.Entity("RobotsWorld.Models.Part", b =>
                 {
-                    b.HasOne("RobotsWorld.Models.SubAssembly")
+                    b.HasOne("RobotsWorld.Models.SubAssembly", "SubAssembly")
                         .WithMany("Parts")
                         .HasForeignKey("SubAssemblyId");
                 });
@@ -318,18 +319,21 @@ namespace RobotsWorld.Data.Migrations
                 {
                     b.HasOne("RobotsWorld.Models.Assembly", "Assembly")
                         .WithMany("Robots")
-                        .HasForeignKey("AssemblyId");
+                        .HasForeignKey("AssemblyId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("RobotsWorld.Models.User")
+                    b.HasOne("RobotsWorld.Models.User", "User")
                         .WithMany("Robots")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("RobotsWorld.Models.SubAssembly", b =>
                 {
                     b.HasOne("RobotsWorld.Models.Assembly", "Assembly")
                         .WithMany("SubAssemblies")
-                        .HasForeignKey("AssemblyId");
+                        .HasForeignKey("AssemblyId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

@@ -24,6 +24,10 @@ namespace RobotsWorld.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new AssemblyConfiguration());
+            builder.ApplyConfiguration(new SubAssemblyConfiguration());
+            builder.ApplyConfiguration(new RobotsConfiguration());
+            builder.ApplyConfiguration(new PartConfiguration());
 
             base.OnModelCreating(builder);
         }

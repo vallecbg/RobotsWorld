@@ -17,11 +17,19 @@ namespace RobotsWorld.Data.Configurations
 
             builder.Property(x => x.SerialNumber).IsRequired();
 
-            builder.Property(x => x.Axis).IsRequired();
+            builder.Property(x => x.Axes).IsRequired();
 
             builder.Property(x => x.ImageUrl).IsRequired(false);
 
-            
+            builder.HasOne(x => x.Assembly)
+                .WithMany(x => x.Robots)
+                .HasForeignKey(x => x.AssemblyId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(x => x.User)
+                .WithMany(x => x.Robots)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

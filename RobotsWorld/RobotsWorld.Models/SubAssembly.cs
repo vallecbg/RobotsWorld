@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace RobotsWorld.Models
 {
     public class SubAssembly
     {
+        public SubAssembly()
+        {
+            this.Parts = new HashSet<Part>();
+        }
+
         public string Id { get; set; }
 
         public string AssemblyId { get; set; }

@@ -1,0 +1,5 @@
+*Major*
+- Check if it's needed password protection
+- Add Error page
+
+*Minor*
