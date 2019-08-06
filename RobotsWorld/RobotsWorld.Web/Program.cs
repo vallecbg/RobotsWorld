@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using RobotsWorld.Data;
 
 namespace RobotsWorld.Web
 {
@@ -19,7 +20,12 @@ namespace RobotsWorld.Web
 
             using (var scope = host.Services.CreateScope())
             {
-                var serverProvider = scope.ServiceProvider;
+                var serviceProvider = scope.ServiceProvider;
+
+                var dbContext = serviceProvider.GetRequiredService<RobotsWorldContext>();
+
+                dbContext.Database.EnsureCreated();
+
 
                 //TODO: I can seed some information to the database
             }
