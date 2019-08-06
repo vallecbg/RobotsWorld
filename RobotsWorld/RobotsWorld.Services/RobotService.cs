@@ -14,6 +14,7 @@ using RobotsWorld.Models;
 using RobotsWorld.Services.Constants;
 using RobotsWorld.Services.Contracts;
 using RobotsWorld.ViewModels.InputModels.Robots;
+using RobotsWorld.ViewModels.OutputModels.Robots;
 
 namespace RobotsWorld.Services
 {
@@ -38,6 +39,17 @@ namespace RobotsWorld.Services
             await this.Context.SaveChangesAsync();
 
             return robot.Id;
+        }
+
+        public ICollection<RobotOutputModel> GetUserRobots(string userId)
+        {
+            var robots = this.Context.Robots
+                .Where(x => x.UserId == userId)
+                .ToList();
+
+            var robotsOutput = Mapper.Map<IList<RobotOutputModel>>(robots);
+
+            return robotsOutput;
         }
 
         private async Task<string> UploadImage(Cloudinary cloudinary, IFormFile fileform, string name)

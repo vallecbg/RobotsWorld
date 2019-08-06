@@ -15,8 +15,6 @@ namespace RobotsWorld.Data.Configurations
 
             builder.Property(x => x.Name).IsRequired();
 
-            builder.Property(x => x.Price).IsRequired();
-
             builder.Property(x => x.Quantity).IsRequired();
 
             builder.Property(x => x.ImageUrl).IsRequired(false);

@@ -9,11 +9,11 @@ using RobotsWorld.ViewModels.InputModels.Robots;
 
 namespace RobotsWorld.Web.Controllers
 {
-    public class RobotController : Controller
+    public class RobotsController : Controller
     {
         private readonly IRobotService robotService;
 
-        public RobotController(IRobotService robotService)
+        public RobotsController(IRobotService robotService)
         {
             this.robotService = robotService;
         }

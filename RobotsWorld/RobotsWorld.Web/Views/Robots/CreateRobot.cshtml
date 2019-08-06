@@ -1,0 +1,58 @@
+﻿@model RobotInputModel
+@{
+    ViewData["Title"] = "Create Robot";
+    var error = ViewData[GlobalConstants.ModelError];
+}
+
+<section class="banner-area" id="home">
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-center">
+            <div class="col-md-6">
+                <h2 class="d-flex justify-content-center text-light">@ViewData["Title"]</h2>
+                <hr class="h2" />
+                <form enctype="multipart/form-data" class="mx-auto" asp-controller="Robots" asp-action="CreateRobot" method="post">
+                    @if (error != null)
+                    {
+                        <p class="text-danger">@error</p>
+                    }
+                    <div class="form-group text-center">
+                        <label asp-for="Name" class="text-center text-light"></label>
+                        <input asp-for="Name" class="form-control" placeholder="Robot Name..." />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group text-center">
+                        <label asp-for="SerialNumber" class="text-center text-light"></label>
+                        <input asp-for="SerialNumber" class="form-control" placeholder="Serial Number..." />
+                        <span asp-validation-for="SerialNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group text-center">
+                        <label asp-for="Axes" class="text-center text-light"></label>
+                        <input asp-for="Axes" class="form-control" type="number" placeholder="Axes..." />
+                        <span asp-validation-for="Axes" class="text-danger"></span>
+                    </div>
+                    <input asp-for="User" type="hidden" value="@this.User.Identity.Name" />
+                    <div class="form-group text-center">
+                        <label asp-for="Image" class="text-center text-light"></label>
+                        @*<input asp-for="Image" class="form-control" placeholder="Confirm Password..." />
+            <span asp-validation-for="Image" class="text-danger"></span>*@
+                        <input type="file" asp-for="Image" class="form-control" name="Image" />
+                        @if (ViewData.ContainsKey(GlobalConstants.Error))
+                        {
+                            <div class="row col-md-12">
+                                <span class="row ml-1 text-danger ">@ViewData[GlobalConstants.Error]</span>
+                            </div>
+                        }
+                    </div>
+
+
+                    <hr class="h2" />
+
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-info">Register</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

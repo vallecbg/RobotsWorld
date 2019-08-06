@@ -4,5 +4,7 @@
 - I can add table with website info like for contacts etc.
 - User robots, if you don't have already made a robot you should make one
 - Add the users input models in folders
+- Maybe i can add createdon or something with datetime
+- Add the template on privacy
 
 *Minor*

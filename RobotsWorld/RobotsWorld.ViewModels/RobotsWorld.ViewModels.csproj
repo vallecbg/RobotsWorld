@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="InputModels\Users\" />
-    <Folder Include="OutputModels\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,33 +4,36 @@
     var error = ViewData[GlobalConstants.ModelError];
 }
 
+<section class="banner-area" id="home">
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-center">
+            <div class="col-md-6">
+                <h2 class="d-flex justify-content-center text-light">@ViewData["Title"]</h2>
+                <hr class="h2" />
+                <form class="mx-auto" asp-controller="Users" asp-action="Login" method="post">
+                    @if (error != null)
+                    {
+                        <p class="text-danger">@error</p>
+                    }
+                    <div class="form-group text-center">
+                        <label asp-for="Username" class="text-center text-light"></label>
+                        <input asp-for="Username" class="form-control" placeholder="Username..." />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-group text-center">
+                        <label asp-for="Password" class="text-center text-light"></label>
+                        <input asp-for="Password" class="form-control" placeholder="Password..." />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
 
-<div class="row fullscreen d-flex align-items-center justify-content-center">
-    <div class="col-md-6">
-        <h2 class="d-flex justify-content-center text-light">@ViewData["Title"]</h2>
-        <hr class="h2" />
-        <form class="mx-auto" asp-controller="Users" asp-action="Login" method="post">
-            @if (error != null)
-            {
-                <p class="text-danger">@error</p>
-            }
-            <div class="form-group text-center">
-                <label asp-for="Username" class="text-center text-light"></label>
-                <input asp-for="Username" class="form-control" placeholder="Username..." />
-                <span asp-validation-for="Username" class="text-danger"></span>
+                    <hr class="h2" />
+
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-info">Login</button>
+                    </div>
+
+                </form>
             </div>
-            <div class="form-group text-center">
-                <label asp-for="Password" class="text-center text-light"></label>
-                <input asp-for="Password" class="form-control" placeholder="Password..." />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-
-            <hr class="h2" />
-
-            <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-info">Login</button>
-            </div>
-
-        </form>
+        </div>
     </div>
-</div>
+</section>
