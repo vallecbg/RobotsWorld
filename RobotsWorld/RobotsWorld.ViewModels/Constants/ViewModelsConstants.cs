@@ -6,6 +6,7 @@ namespace RobotsWorld.ViewModels.Constants
 {
     public class ViewModelsConstants
     {
+        //Users
         public const int UserModelNameMaxLength = 100;
         public const int UserModelNameMinLength = 3;
         public const string RegexValidateName = "[A-Za-z ]+";
@@ -19,5 +20,11 @@ namespace RobotsWorld.ViewModels.Constants
             "Your username should contains only latin alphabet symbols, spaces and numbers!";
 
         public const string DisplayConfirmPassword = "Confirm Password";
+
+        //Robots
+        public const int RobotNameMaxLength = 100;
+        public const int RobotNameMinLength = 3;
+        public const int SerialNumberLength = 200;
+        public const string ImageDisplay = "Robot Image";
     }
 }

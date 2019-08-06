@@ -5,7 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="InputModels\Users\" />
     <Folder Include="OutputModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Http.Features">
+      <HintPath>C:\Users\Vallec\.nuget\packages\microsoft.aspnetcore.http.features\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

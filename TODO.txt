@@ -1,5 +1,8 @@
 *Major*
 - Check if it's needed password protection
 - Add Error page
+- I can add table with website info like for contacts etc.
+- User robots, if you don't have already made a robot you should make one
+- Add the users input models in folders
 
 *Minor*
