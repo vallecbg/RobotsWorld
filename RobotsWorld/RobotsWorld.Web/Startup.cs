@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -14,6 +15,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RobotsWorld.Data;
 using RobotsWorld.Models;
+using RobotsWorld.Services;
+using RobotsWorld.Services.Contracts;
+using RobotsWorld.Services.Mapper;
+using RobotsWorld.Web.HelperMethods;
 
 namespace RobotsWorld.Web
 {
@@ -55,9 +60,10 @@ namespace RobotsWorld.Web
                 .AddDefaultTokenProviders();
 
             //TODO: Add services here!
-            //services.AddScoped<UserManager<User>, IdentityBuilder>()
+            services.AddScoped<IUserService, UserService>();
 
             //TODO: Add automapper here!
+            services.AddAutoMapper(x => x.AddProfile<MapperProfile>());
 
             services.ConfigureApplicationCookie(options =>
             {
@@ -95,6 +101,7 @@ namespace RobotsWorld.Web
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseSeedRolesMiddleware();
             app.UseAuthentication();
 
             app.UseMvc(routes =>
