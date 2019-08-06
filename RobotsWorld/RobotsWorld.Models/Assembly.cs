@@ -8,6 +8,10 @@ namespace RobotsWorld.Models
     {
         public string Id { get; set; }
 
+        public string RobotId { get; set; }
+
+        public ICollection<Robot> Robots { get; set; }
+
         public ICollection<SubAssembly> SubAssemblies { get; set; }
     }
 }

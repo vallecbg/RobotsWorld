@@ -8,6 +8,9 @@ namespace RobotsWorld.Models
     {
         public string Id { get; set; }
 
+        public string AssemblyId { get; set; }
+        public Assembly Assembly { get; set; }
+
         public string Name { get; set; }
 
         public int Quantity { get; set; }

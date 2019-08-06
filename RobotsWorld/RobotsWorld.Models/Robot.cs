@@ -12,6 +12,9 @@ namespace RobotsWorld.Models
 
         public int Axis { get; set; }
 
+        public string ImageUrl { get; set; }
+
+        public string AssemblyId { get; set; }
         public Assembly Assembly { get; set; }
     }
 }
