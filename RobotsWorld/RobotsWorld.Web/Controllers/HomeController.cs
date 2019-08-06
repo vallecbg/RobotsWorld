@@ -11,7 +11,9 @@ namespace RobotsWorld.Web.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return this.User.Identity.IsAuthenticated
+                ? this.View("IndexLogged")
+                : this.View();
         }
 
         public IActionResult Privacy()
