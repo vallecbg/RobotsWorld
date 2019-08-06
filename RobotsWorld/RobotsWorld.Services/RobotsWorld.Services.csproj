@@ -1,7 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RobotsWorld.Data\RobotsWorld.Data.csproj" />
+    <ProjectReference Include="..\RobotsWorld.Models\RobotsWorld.Models.csproj" />
+    <ProjectReference Include="..\RobotsWorld.ViewModels\RobotsWorld.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="CloudinaryDotNet" Version="1.7.0" />
+  </ItemGroup>
 </Project>
