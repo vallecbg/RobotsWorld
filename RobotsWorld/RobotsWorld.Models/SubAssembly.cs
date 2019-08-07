@@ -23,6 +23,8 @@ namespace RobotsWorld.Models
 
         public decimal TotalPrice => this.Parts.Any() ? this.Parts.Sum(x => x.Price * x.Quantity) : 0;
 
+        public double Weight { get; set; }
+
         public string ImageUrl { get; set; }
 
         public ICollection<Part> Parts { get; set; }

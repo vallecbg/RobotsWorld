@@ -1,0 +1,70 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using RobotsWorld.Models
+@model RobotOutputModel
+@inject UserManager<User> UserManager
+@{
+    ViewData["Title"] = "Robot Details";
+}
+
+<section class="banner-area" id="home">
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-start justify-content-center">
+            <main class="mt-5 pt-4">
+                <div class="container dark-grey-text mt-5 card">
+
+                    <!--Grid row-->
+                    <div class="row wow fadeIn">
+
+                        <!--Grid column-->
+                        <div class="col-md-6 mb-4">
+
+                            <img src="@Model.ImageUrl" class="img-fluid" style="max-height: 450px">
+
+                        </div>
+                        <!--Grid column-->
+                        <!--Grid column-->
+                        <div class="col-md-6 mb-4">
+
+                            <!--Content-->
+                            <div class="p-4">
+
+                                @*<div class="mb-3">
+                                    <a href="">
+                                        <span class="badge purple mr-1">Category 2</span>
+                                    </a>
+                                    <a href="">
+                                        <span class="badge blue mr-1">New</span>
+                                    </a>
+                                    <a href="">
+                                        <span class="badge red mr-1">Bestseller</span>
+                                    </a>
+                                </div>*@
+
+                                @*<p class="lead">
+                                    <span>$100</span>
+                                </p>*@
+
+                                <p class="lead font-weight-bold">@Model.Name</p>
+
+                                <p>
+                                    S/N: @Model.SerialNumber<br/>
+                                    Axes: @Model.Axes<br/>
+                                    Creator: @Model.User<br/>
+                                    Assemblies: @Model.AssembliesCount
+                                </p>
+
+                            </div>
+                            <!--Content-->
+
+                        </div>
+                        <!--Grid column-->
+
+                    </div>
+                </div>
+            </main>
+            <!--Main layout-->
+        </div>
+    </div>
+</section>
+
+

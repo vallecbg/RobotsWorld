@@ -8,3 +8,6 @@
 - Add the template on privacy
 
 *Minor*
+- Facebook posting like wall
+- Add categories
+- Make cart where you can buy already made robots using tables

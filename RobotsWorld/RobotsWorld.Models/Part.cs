@@ -16,5 +16,8 @@ namespace RobotsWorld.Models
 
         public string SubAssemblyId { get; set; }
         public SubAssembly SubAssembly { get; set; }
+
+        public string VendorId { get; set; }
+        public Vendor Vendor { get; set; }
     }
 }

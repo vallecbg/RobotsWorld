@@ -52,6 +52,17 @@ namespace RobotsWorld.Services
             return robotsOutput;
         }
 
+        public RobotOutputModel GetRobotDetails(string robotId)
+        {
+            var robot = this.Context.Robots
+                .FirstOrDefault(x => x.Id == robotId);
+
+            var robotOutput = Mapper.Map<RobotOutputModel>(robot);
+
+            return robotOutput;
+        }
+
+
         private async Task<string> UploadImage(Cloudinary cloudinary, IFormFile fileform, string name)
         {
             if (fileform == null)

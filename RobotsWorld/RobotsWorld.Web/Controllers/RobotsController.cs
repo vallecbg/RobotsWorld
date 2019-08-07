@@ -54,5 +54,13 @@ namespace RobotsWorld.Web.Controllers
             //TODO: Change it!
             //return RedirectToAction("Details", "Robot", new { id });
         }
+
+        [HttpGet]
+        public IActionResult Details(string id)
+        {
+            var result = this.robotService.GetRobotDetails(id);
+
+            return this.View(result);
+        }
     }
 }

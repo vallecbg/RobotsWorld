@@ -17,6 +17,8 @@ namespace RobotsWorld.Data.Configurations
 
             builder.Property(x => x.Quantity).IsRequired();
 
+            builder.Property(x => x.Weight).IsRequired();
+
             builder.Property(x => x.ImageUrl).IsRequired(false);
 
             builder.HasMany(x => x.Parts);

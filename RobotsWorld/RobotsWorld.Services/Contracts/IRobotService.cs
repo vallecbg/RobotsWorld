@@ -12,5 +12,7 @@ namespace RobotsWorld.Services.Contracts
         Task<string> CreateRobot(RobotInputModel model);
 
         ICollection<RobotOutputModel> GetUserRobots(string userId);
+
+        RobotOutputModel GetRobotDetails(string robotId);
     }
 }

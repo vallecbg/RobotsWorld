@@ -44,9 +44,10 @@
                             <div class="details">
                                 <h4>@robot.Name</h4>
                                 <p>
-                                    @robot.SerialNumber Axes: @robot.Axes
+                                    S/N: @robot.SerialNumber <br/>
+                                    Axes: @robot.Axes
                                 </p>
-                                <a href="#" class="primary-btn text-uppercase">View Details</a>
+                                <a asp-controller="Robots" asp-action="Details" asp-route-id="@robot.Id" class="primary-btn text-uppercase">View Details</a>
                             </div>
                         </div>
                     </div>
