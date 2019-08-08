@@ -5,13 +5,10 @@
 @{
     ViewData["Title"] = "Robot Details";
 }
-<link rel="stylesheet" href="~/css/greytowhite.css">
-
-
-<section class="products-area section-gap">
+<section class="banner-area relative" id="home">
     <div class="container">
-        <main class="mt-5 pt-4">
-            <div class="container dark-grey-text mt-5 card justify-content-start">
+        <main class="pt-100 pb-100">
+            <div class="container dark-grey-text  card justify-content-start">
 
                 <!--Grid row-->
                 <div class="row wow fadeIn">
@@ -29,32 +26,14 @@
                         <!--Content-->
                         <div class="p-4">
 
-                            @*<div class="mb-3">
-                                <a href="">
-                                    <span class="badge purple mr-1">Category 2</span>
-                                </a>
-                                <a href="">
-                                    <span class="badge blue mr-1">New</span>
-                                </a>
-                                <a href="">
-                                    <span class="badge red mr-1">Bestseller</span>
-                                </a>
-                            </div>*@
-
-                            @*<p class="lead">
-                                <span>$100</span>
-                            </p>*@
-
                             <h1 class="lead font-weight-bold">@Model.Name</h1>
 
                             <p>
-                                S/N: @Model.SerialNumber<br/>
-                                Axes: @Model.Axes <br/>
-                                Creator: @Model.User <br/>
+                                S/N: @Model.SerialNumber<br />
+                                Axes: @Model.Axes <br />
+                                Creator: @Model.User <br />
                                 Sub Assemblies: @Model.AssembliesCount
                             </p>
-
-                            
 
                         </div>
                         <!--Content-->
@@ -118,6 +97,6 @@
         </main>
         <!--Main layout-->
     </div>
-</section>>
+</section>
 
 
