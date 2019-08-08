@@ -27,5 +27,8 @@ namespace RobotsWorld.Services.Constants
             "https://res.cloudinary.com/vallec/image/upload/v1561301682/No_image_available_zvvugj.png";
         public static readonly string[] ImageExtensions = { "png", "jpg", "jpeg" };
         public static string WrongFileType = $"The image type should be: {string.Join(", ", ImageExtensions)}";
+
+        //Rights
+        public const string UserHasNoRights = "You don't have rights to do this!";
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
@@ -62,6 +63,62 @@ namespace RobotsWorld.Services
             var robotOutput = Mapper.Map<RobotOutputModel>(robot);
 
             return robotOutput;
+        }
+
+        public void DeleteRobot(string robotId, string username)
+        {
+            var robot = this.Context.Robots
+                .Include(x => x.User)
+                .First(x => x.Id == robotId);
+
+            var user = this.UserManager.FindByNameAsync(username).GetAwaiter().GetResult();
+
+            var userRoles = this.UserManager.GetRolesAsync(user).GetAwaiter().GetResult();
+
+            bool admin = userRoles.Any(x => x == GlobalConstants.AdminRole);
+            bool owner = user.Id == robot.UserId;
+
+            if (!admin && !owner)
+            {
+                throw new InvalidOperationException(GlobalConstants.UserHasNoRights);
+            }
+
+
+            this.Context.Remove(robot);
+            this.Context.SaveChangesAsync().GetAwaiter().GetResult();
+        }
+
+        public RobotEditModel GetRobotToEdit(string robotId)
+        {
+            var robot = this.Context.Robots
+                .Include(x => x.User)
+                .Include(x => x.ImageUrl)
+                .ProjectTo<RobotEditModel>(Mapper.ConfigurationProvider)
+                .First(x => x.Id == robotId);
+
+            return robot;
+        }
+
+        public void EditRobot(RobotEditModel model)
+        {
+            var robot = this.Context.Robots
+                .Include(x => x.User)
+                .First(x => x.Id == model.Id);
+
+            var cloudinary = SetCloudinary();
+
+            var url = UploadImage(cloudinary, model.Image, model.Name).GetAwaiter().GetResult();
+
+            robot.Name = model.Name;
+            robot.SerialNumber = model.SerialNumber;
+            robot.Axes = model.Axes;
+            if (url != null)
+            {
+                robot.ImageUrl = url ?? GlobalConstants.NoImageAvailableUrl;
+            }
+
+            this.Context.Robots.Update(robot);
+            this.Context.SaveChanges();
         }
 
 

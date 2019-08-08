@@ -62,5 +62,41 @@ namespace RobotsWorld.Web.Controllers
 
             return this.View(result);
         }
+
+        [HttpGet]
+        public IActionResult Delete(string id)
+        {
+            var username = this.User.Identity.Name;
+
+            this.robotService.DeleteRobot(id, username);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(string id)
+        {
+            var robotToEdit = this.robotService.GetRobotToEdit(id);
+
+            if (robotToEdit == null)
+            {
+                return NotFound();
+            }
+
+            return this.View(robotToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(RobotEditModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            this.robotService.EditRobot(model);
+
+            return RedirectToAction("Details", "Robots", new {id = model.Id});
+        }
     }
 }

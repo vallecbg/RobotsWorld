@@ -14,5 +14,11 @@ namespace RobotsWorld.Services.Contracts
         ICollection<RobotOutputModel> GetUserRobots(string userId);
 
         RobotOutputModel GetRobotDetails(string robotId);
+
+        void DeleteRobot(string robotId, string username);
+
+        void EditRobot(RobotEditModel model);
+
+        RobotEditModel GetRobotToEdit(string robotId);
     }
 }
