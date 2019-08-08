@@ -37,11 +37,12 @@
 
                         </div>
                         <!--Content-->
-
+                        <div class="col-lg-4 col-sm-12">
+                            <a class="btn btn-warning" asp-controller="Robots" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit text-light"></i></a>
+                            <a class="btn btn-danger" asp-controller="Robots" asp-action="Delete" asp-route-id="@Model.Id"><i class="fas fa-trash"></i></a>
+                        </div>
                     </div>
                     <!--Grid column-->
-                    <a class="btn btn-danger" asp-controller="Robots" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
-                    <a class="btn btn-warning" asp-controller="Robots" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
                 </div>
                 <!--Grid row-->
 
