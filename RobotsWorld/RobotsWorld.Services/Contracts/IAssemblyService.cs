@@ -8,6 +8,6 @@ namespace RobotsWorld.Services.Contracts
 {
     public interface IAssemblyService
     {
-        string Create(AssemblyInputModel model);
+        string Create(string robotId);
     }
 }

@@ -134,10 +134,13 @@ namespace RobotsWorld.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("RobotId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RobotId")
+                        .IsUnique()
+                        .HasFilter("[RobotId] IS NOT NULL");
 
                     b.ToTable("Assemblies");
                 });
@@ -172,8 +175,6 @@ namespace RobotsWorld.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("AssemblyId");
-
                     b.Property<int>("Axes");
 
                     b.Property<string>("ImageUrl");
@@ -187,8 +188,6 @@ namespace RobotsWorld.Data.Migrations
                     b.Property<string>("UserId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AssemblyId");
 
                     b.HasIndex("UserId");
 
@@ -329,6 +328,13 @@ namespace RobotsWorld.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("RobotsWorld.Models.Assembly", b =>
+                {
+                    b.HasOne("RobotsWorld.Models.Robot", "Robot")
+                        .WithOne("Assembly")
+                        .HasForeignKey("RobotsWorld.Models.Assembly", "RobotId");
+                });
+
             modelBuilder.Entity("RobotsWorld.Models.Part", b =>
                 {
                     b.HasOne("RobotsWorld.Models.SubAssembly", "SubAssembly")
@@ -343,11 +349,6 @@ namespace RobotsWorld.Data.Migrations
 
             modelBuilder.Entity("RobotsWorld.Models.Robot", b =>
                 {
-                    b.HasOne("RobotsWorld.Models.Assembly", "Assembly")
-                        .WithMany("Robots")
-                        .HasForeignKey("AssemblyId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("RobotsWorld.Models.User", "User")
                         .WithMany("Robots")
                         .HasForeignKey("UserId")

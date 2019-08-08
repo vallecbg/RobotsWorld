@@ -14,8 +14,7 @@ namespace RobotsWorld.Models
 
         public string ImageUrl { get; set; }
 
-        public string AssemblyId { get; set; }
-        public Assembly Assembly { get; set; }
+        public virtual Assembly Assembly { get; set; }
 
         public string UserId { get; set; }
         public User User { get; set; }

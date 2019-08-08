@@ -26,9 +26,6 @@ namespace RobotsWorld.Services.Mapper
                 .ForMember(x => x.User, cfg => cfg.MapFrom(x => x.User.UserName))
                 .ForMember(x => x.AssembliesCount, cfg => cfg.MapFrom(x => x.Assembly.SubAssemblies.Count));
 
-            CreateMap<AssemblyInputModel, Assembly>()
-                .ForMember(x => x.Name, cfg => cfg.MapFrom(x => x.Name))
-                .ForAllOtherMembers(x => x.Ignore());
         }
     }
 }

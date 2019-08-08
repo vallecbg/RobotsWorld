@@ -13,17 +13,14 @@ namespace RobotsWorld.Data.Configurations
         {
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Name).IsRequired();
-
-            builder.HasMany(x => x.Robots)
-                .WithOne(x => x.Assembly)
-                .HasForeignKey(x => x.AssemblyId)
-                .OnDelete(DeleteBehavior.SetNull);
-
             builder.HasMany(x => x.SubAssemblies)
                 .WithOne(x => x.Assembly)
                 .HasForeignKey(x => x.AssemblyId)
                 .OnDelete(DeleteBehavior.SetNull);
+
+            //builder.HasOne(x => x.Robot)
+            //    .WithOne(x => x.Assembly)
+            //    .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

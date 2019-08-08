@@ -58,10 +58,11 @@
                     @if (assembliesCount == 0)
                     {
                         <div class="col-md-6 text-center pb-100">
-
                             <h4 class="my-4 h4">You don't have an Assembly yet?</h4>
-
-                            <a class="btn btn-success btn-large" asp-controller="Assembly" asp-action="Create" asp-route-robotId="@Model.Id"><i class="fas fa-plus-circle"></i> Create Now</a>
+                            <form enctype="multipart/form-data" class="mx-auto" asp-controller="Assembly" asp-action="Create" method="post">
+                                <input type="hidden" value="@Model.Id" name="robotId" id="robotId" />
+                                <button type="submit"><a class="btn btn-success btn-large"><i class="fas fa-plus-circle"></i> Create Now</a></button>
+                            </form>
                         </div>
                         <!--Grid column-->
                     }
@@ -86,29 +87,29 @@
                 <!--Grid row-->
                 @*<div class="row wow fadeIn">
 
-                    <!--Grid column-->
-                    <div class="col-lg-4 col-md-12 mb-4">
+                        <!--Grid column-->
+                        <div class="col-lg-4 col-md-12 mb-4">
 
-                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
+                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
 
-                    </div>
-                    <!--Grid column-->
-                    <!--Grid column-->
-                    <div class="col-lg-4 col-md-6 mb-4">
+                        </div>
+                        <!--Grid column-->
+                        <!--Grid column-->
+                        <div class="col-lg-4 col-md-6 mb-4">
 
-                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
+                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
 
-                    </div>
-                    <!--Grid column-->
-                    <!--Grid column-->
-                    <div class="col-lg-4 col-md-6 mb-4">
+                        </div>
+                        <!--Grid column-->
+                        <!--Grid column-->
+                        <div class="col-lg-4 col-md-6 mb-4">
 
-                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
+                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
 
-                    </div>
-                    <!--Grid column-->
+                        </div>
+                        <!--Grid column-->
 
-                </div>*@
+                    </div>*@
                 <!--Grid row-->
 
             </div>

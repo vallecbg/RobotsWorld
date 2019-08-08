@@ -21,10 +21,7 @@ namespace RobotsWorld.Data.Configurations
 
             builder.Property(x => x.ImageUrl).IsRequired(false);
 
-            builder.HasOne(x => x.Assembly)
-                .WithMany(x => x.Robots)
-                .HasForeignKey(x => x.AssemblyId)
-                .OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.Assembly);
 
             builder.HasOne(x => x.User)
                 .WithMany(x => x.Robots)

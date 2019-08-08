@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RobotsWorld.Data.Migrations
 {
-    public partial class AddedPriceForRobots : Migration
+    public partial class AddedTotalWeight : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,7 +49,7 @@ namespace RobotsWorld.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Assemblies",
+                name: "Vendors",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -57,7 +57,7 @@ namespace RobotsWorld.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Assemblies", x => x.Id);
+                    table.PrimaryKey("PK_Vendors", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -175,24 +175,35 @@ namespace RobotsWorld.Data.Migrations
                     SerialNumber = table.Column<string>(nullable: false),
                     Axes = table.Column<int>(nullable: false),
                     ImageUrl = table.Column<string>(nullable: true),
-                    AssemblyId = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Robots", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Robots_Assemblies_AssemblyId",
-                        column: x => x.AssemblyId,
-                        principalTable: "Assemblies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Robots_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Assemblies",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    RobotId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Assemblies", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Assemblies_Robots_RobotId",
+                        column: x => x.RobotId,
+                        principalTable: "Robots",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -203,6 +214,7 @@ namespace RobotsWorld.Data.Migrations
                     AssemblyId = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
+                    Weight = table.Column<double>(nullable: false),
                     ImageUrl = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -213,7 +225,7 @@ namespace RobotsWorld.Data.Migrations
                         column: x => x.AssemblyId,
                         principalTable: "Assemblies",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -224,7 +236,8 @@ namespace RobotsWorld.Data.Migrations
                     Name = table.Column<string>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
                     Price = table.Column<decimal>(nullable: false),
-                    SubAssemblyId = table.Column<string>(nullable: true)
+                    SubAssemblyId = table.Column<string>(nullable: true),
+                    VendorId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -235,6 +248,12 @@ namespace RobotsWorld.Data.Migrations
                         principalTable: "SubAssemblies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Parts_Vendors_VendorId",
+                        column: x => x.VendorId,
+                        principalTable: "Vendors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -277,14 +296,21 @@ namespace RobotsWorld.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Assemblies_RobotId",
+                table: "Assemblies",
+                column: "RobotId",
+                unique: true,
+                filter: "[RobotId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Parts_SubAssemblyId",
                 table: "Parts",
                 column: "SubAssemblyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Robots_AssemblyId",
-                table: "Robots",
-                column: "AssemblyId");
+                name: "IX_Parts_VendorId",
+                table: "Parts",
+                column: "VendorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Robots_UserId",
@@ -318,19 +344,22 @@ namespace RobotsWorld.Data.Migrations
                 name: "Parts");
 
             migrationBuilder.DropTable(
-                name: "Robots");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "SubAssemblies");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Vendors");
 
             migrationBuilder.DropTable(
                 name: "Assemblies");
+
+            migrationBuilder.DropTable(
+                name: "Robots");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

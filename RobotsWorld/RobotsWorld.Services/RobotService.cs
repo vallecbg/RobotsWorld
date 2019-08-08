@@ -103,7 +103,7 @@ namespace RobotsWorld.Services
         {
             var count = this.Context.Robots
                 .Where(x => x.Id == id)
-                .Count(x => x.AssemblyId != null);
+                .Count(x => x.Assembly != null);
 
             return count;
         }

@@ -17,24 +17,12 @@ namespace RobotsWorld.Web.Controllers
             this.assemblyService = assemblyService;
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult Create(string robotId)
         {
-            var model = new AssemblyInputModel
-            {
-                Name = "",
-                RobotId = robotId
-            };
+            this.assemblyService.Create(robotId);
 
-            return this.View(model);
-        }
-
-        [HttpPost]
-        public IActionResult Create(AssemblyInputModel model)
-        {
-            this.assemblyService.Create(model);
-
-            return RedirectToAction("Details", "Robots", new { id = model.RobotId });
+            return RedirectToAction("Details", "Robots", new { id = robotId });
         }
     }
 }

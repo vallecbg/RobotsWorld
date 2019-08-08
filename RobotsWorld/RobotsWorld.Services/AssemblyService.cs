@@ -17,18 +17,17 @@ namespace RobotsWorld.Services
         {
         }
 
-        public string Create(AssemblyInputModel model)
+        public string Create(string robotId)
         {
-            var assembly = Mapper.Map<Assembly>(model);
+            var assembly = new Assembly();
 
             var robot = this.Context.Robots
-                .Find(model.RobotId);
+                .Find(robotId);
 
-            assembly.Robots.Add(robot);
+            assembly.RobotId = robot.Id;
+            robot.Assembly = assembly;
+
             this.Context.Assemblies.Add(assembly);
-            this.Context.SaveChanges();
-
-            robot.AssemblyId = assembly.Id;
             this.Context.Robots.Update(robot);
             this.Context.SaveChanges();
 
