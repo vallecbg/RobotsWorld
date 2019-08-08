@@ -9,6 +9,7 @@ using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using RobotsWorld.Data;
 using RobotsWorld.Models;
 using RobotsWorld.Services.Constants;
@@ -55,6 +56,7 @@ namespace RobotsWorld.Services
         public RobotOutputModel GetRobotDetails(string robotId)
         {
             var robot = this.Context.Robots
+                .Include(x => x.User)
                 .FirstOrDefault(x => x.Id == robotId);
 
             var robotOutput = Mapper.Map<RobotOutputModel>(robot);
