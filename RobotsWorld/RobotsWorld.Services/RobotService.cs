@@ -99,6 +99,15 @@ namespace RobotsWorld.Services
             return robot;
         }
 
+        public int GetAssembliesCount(string id)
+        {
+            var count = this.Context.Robots
+                .Where(x => x.Id == id)
+                .Count(x => x.AssemblyId != null);
+
+            return count;
+        }
+
         public void EditRobot(RobotEditModel model)
         {
             var robot = this.Context.Robots

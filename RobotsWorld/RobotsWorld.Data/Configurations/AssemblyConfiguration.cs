@@ -15,17 +15,15 @@ namespace RobotsWorld.Data.Configurations
 
             builder.Property(x => x.Name).IsRequired();
 
-            //builder.Property(x => x.TotalPrice).IsRequired();
-
             builder.HasMany(x => x.Robots)
                 .WithOne(x => x.Assembly)
                 .HasForeignKey(x => x.AssemblyId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.SetNull);
 
             builder.HasMany(x => x.SubAssemblies)
                 .WithOne(x => x.Assembly)
                 .HasForeignKey(x => x.AssemblyId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

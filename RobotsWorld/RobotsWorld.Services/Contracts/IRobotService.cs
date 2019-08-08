@@ -20,5 +20,7 @@ namespace RobotsWorld.Services.Contracts
         void EditRobot(RobotEditModel model);
 
         RobotEditModel GetRobotToEdit(string robotId);
+
+        int GetAssembliesCount(string id);
     }
 }

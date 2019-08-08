@@ -62,6 +62,7 @@ namespace RobotsWorld.Web
             //TODO: Add services here!
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRobotService, RobotService>();
+            services.AddScoped<IAssemblyService, AssemblyService>();
 
             //TODO: Add automapper here!
             services.AddAutoMapper(x => x.AddProfile<MapperProfile>());

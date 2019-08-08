@@ -4,6 +4,7 @@ using System.Text;
 using AutoMapper;
 using RobotsWorld.Models;
 using RobotsWorld.ViewModels.InputModels;
+using RobotsWorld.ViewModels.InputModels.Assemblies;
 using RobotsWorld.ViewModels.InputModels.Robots;
 using RobotsWorld.ViewModels.OutputModels.Robots;
 
@@ -24,6 +25,10 @@ namespace RobotsWorld.Services.Mapper
             CreateMap<Robot, RobotOutputModel>()
                 .ForMember(x => x.User, cfg => cfg.MapFrom(x => x.User.UserName))
                 .ForMember(x => x.AssembliesCount, cfg => cfg.MapFrom(x => x.Assembly.SubAssemblies.Count));
+
+            CreateMap<AssemblyInputModel, Assembly>()
+                .ForMember(x => x.Name, cfg => cfg.MapFrom(x => x.Name))
+                .ForAllOtherMembers(x => x.Ignore());
         }
     }
 }

@@ -1,9 +1,13 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Identity
 @using RobotsWorld.Models
+@using RobotsWorld.Services.Contracts
 @model RobotOutputModel
+@inject IRobotService RobotService
 @inject UserManager<User> UserManager
 @{
     ViewData["Title"] = "Robot Details";
+    var assembliesCount = RobotService.GetAssembliesCount(@Model.Id);
 }
 <section class="banner-area relative" id="home">
     <div class="container">
@@ -50,25 +54,37 @@
 
                 <!--Grid row-->
                 <div class="row d-flex justify-content-center wow fadeIn">
-
                     <!--Grid column-->
-                    <div class="col-md-6 text-center">
+                    @if (assembliesCount == 0)
+                    {
+                        <div class="col-md-6 text-center pb-100">
 
-                        <h4 class="my-4 h4">Additional information</h4>
+                            <h4 class="my-4 h4">You don't have an Assembly yet?</h4>
 
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
-                            voluptates,
-                            quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.
-                        </p>
+                            <a class="btn btn-success btn-large" asp-controller="Assembly" asp-action="Create" asp-route-robotId="@Model.Id"><i class="fas fa-plus-circle"></i> Create Now</a>
+                        </div>
+                        <!--Grid column-->
+                    }
+                    else
+                    {
+                        <div class="col-md-6 text-center">
 
-                    </div>
+                            <h4 class="my-4 h4">Additional information</h4>
+
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
+                                voluptates,
+                                quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.
+                            </p>
+
+                        </div>
+                    }
                     <!--Grid column-->
 
                 </div>
                 <!--Grid row-->
                 <!--Grid row-->
-                <div class="row wow fadeIn">
+                @*<div class="row wow fadeIn">
 
                     <!--Grid column-->
                     <div class="col-lg-4 col-md-12 mb-4">
@@ -92,7 +108,7 @@
                     </div>
                     <!--Grid column-->
 
-                </div>
+                </div>*@
                 <!--Grid row-->
 
             </div>

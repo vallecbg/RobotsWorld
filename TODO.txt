@@ -6,8 +6,11 @@
 - Add the users input models in folders
 - Maybe i can add createdon or something with datetime
 - Add the template on privacy
+- Make authorize everywhere needed
+- Think about deleting assembly should become null
 
 *Minor*
 - Facebook posting like wall
 - Add categories
 - Make cart where you can buy already made robots using tables
+- I can add delivery of the robots using google maps for starting point and end point

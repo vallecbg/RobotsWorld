@@ -1,0 +1,37 @@
+﻿@model AssemblyInputModel
+@{
+    ViewData["Title"] = "Create Assembly";
+    var error = ViewData[GlobalConstants.ModelError];
+}
+
+<section class="banner-area" id="home">
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-center">
+            <div class="col-md-6">
+                <h2 class="d-flex justify-content-center text-light">@ViewData["Title"]</h2>
+                <hr class="h2" />
+                <form enctype="multipart/form-data" class="mx-auto" asp-controller="Assembly" asp-action="Create" method="post">
+                    @if (error != null)
+                    {
+                        <p class="text-danger">@error</p>
+                    }
+                    <div class="form-group text-center">
+                        <label asp-for="Name" class="text-center text-light"></label>
+                        <input asp-for="Name" class="form-control" placeholder="Robot Name..." />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" value="@Model.RobotId" asp-for="RobotId"/>
+
+                    <hr class="h2" />
+
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-info">Register</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
