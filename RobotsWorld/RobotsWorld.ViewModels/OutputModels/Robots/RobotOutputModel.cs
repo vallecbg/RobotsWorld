@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using RobotsWorld.Models;
+using RobotsWorld.ViewModels.OutputModels.SubAssemblies;
 
 namespace RobotsWorld.ViewModels.OutputModels.Robots
 {
@@ -19,5 +21,9 @@ namespace RobotsWorld.ViewModels.OutputModels.Robots
         public int AssembliesCount { get; set; }
 
         public string User { get; set; }
+
+        public string AssemblyId { get; set; }
+
+        public ICollection<SubAssemblyOutputModel> SubAssemblies { get; set; }
     }
 }

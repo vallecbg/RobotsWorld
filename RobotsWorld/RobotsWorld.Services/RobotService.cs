@@ -58,6 +58,8 @@ namespace RobotsWorld.Services
         {
             var robot = this.Context.Robots
                 .Include(x => x.User)
+                .Include(x => x.Assembly)
+                .ThenInclude(x => x.SubAssemblies)
                 .FirstOrDefault(x => x.Id == robotId);
 
             var robotOutput = Mapper.Map<RobotOutputModel>(robot);

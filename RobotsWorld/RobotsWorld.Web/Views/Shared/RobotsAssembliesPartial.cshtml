@@ -1,0 +1,37 @@
+﻿@model ICollection<SubAssemblyOutputModel>
+
+
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Weight</th>
+                <th>TotalPrice</th>
+                <th class="sorting_asc_disabled sorting_desc_disabled">Add Part</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Weight</th>
+                <th>TotalPrice</th>
+                <th class="sorting_asc_disabled sorting_desc_disabled">Add Part</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            @foreach (var assembly in Model)
+            {
+                <tr>
+                    <td>@assembly.Name</td>
+                    <td>@assembly.Quantity</td>
+                    <td>@assembly.Weight</td>
+                    <td>$@assembly.TotalPrice</td>
+                    <td><a href="" class="btn btn-success"><i class="fa fa-plus-square"></i></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

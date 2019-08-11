@@ -61,23 +61,17 @@
                             <h4 class="my-4 h4">You don't have an Assembly yet?</h4>
                             <form enctype="multipart/form-data" class="mx-auto" asp-controller="Assembly" asp-action="Create" method="post">
                                 <input type="hidden" value="@Model.Id" name="robotId" id="robotId" />
-                                <button type="submit"><a class="btn btn-success btn-large"><i class="fas fa-plus-circle"></i> Create Now</a></button>
+                                <button type="submit" class="btn btn-success btn-large"><i class="fas fa-plus-circle"></i> Create Now</button>
                             </form>
                         </div>
                         <!--Grid column-->
                     }
                     else
                     {
-                        <div class="col-md-6 text-center">
-
-                            <h4 class="my-4 h4">Additional information</h4>
-
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
-                                voluptates,
-                                quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.
-                            </p>
-
+                        <div class="col-md-12 text-center">
+                            <h4 class="my-4 h4">Assembly ID: @Model.AssemblyId</h4>
+                            <a class="btn btn-success text-light mb-3"><i class="fa fa-plus-square"></i> Create Sub Assembly</a>
+                            @await Html.PartialAsync("RobotsAssembliesPartial", Model.SubAssemblies)
                         </div>
                     }
                     <!--Grid column-->
@@ -118,4 +112,11 @@
     </div>
 </section>
 
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#dataTable1').DataTable({ responsive: true });
+        });
+    </script>
+}
 

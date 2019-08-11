@@ -50,9 +50,8 @@ namespace RobotsWorld.Web.Controllers
 
             var id = await this.robotService.CreateRobot(model);
 
-            return Redirect("/");
-            //TODO: Change it!
-            //return RedirectToAction("Details", "Robot", new { id });
+
+            return RedirectToAction("Details", "Robots", new { id });
         }
 
         [HttpGet]
