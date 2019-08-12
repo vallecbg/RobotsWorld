@@ -10,6 +10,16 @@ namespace RobotsWorld.Services.Constants
         public const string ModelError = "LoginError";
         public const string Error = "Error";
 
+        //Routes
+        public class RouteConstants
+        {
+            public const string CreateSubAssemblyRoute = "/SubAssembly/Create/{assemblyId}";
+        }
+
+        //Robots
+        public const string RobotId = "robotId";
+        public const string AssemblyId = "assemblyId";
+
         //Users
         public const string RegisterError = "There's already an registered user with this username or name!";
         public const string LoginError = "Wrong username or password!";

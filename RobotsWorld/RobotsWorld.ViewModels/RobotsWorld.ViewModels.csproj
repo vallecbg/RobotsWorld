@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="InputModels\Users\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\RobotsWorld.Models\RobotsWorld.Models.csproj" />
   </ItemGroup>
 

@@ -10,6 +10,7 @@ using RobotsWorld.Models;
 using RobotsWorld.Services.Constants;
 using RobotsWorld.Services.Contracts;
 using RobotsWorld.ViewModels.InputModels;
+using RobotsWorld.ViewModels.InputModels.Users;
 
 namespace RobotsWorld.Services
 {

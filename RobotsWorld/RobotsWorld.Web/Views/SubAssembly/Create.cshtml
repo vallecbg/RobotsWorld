@@ -1,7 +1,8 @@
-﻿@model RobotInputModel
+﻿@model SubAssemblyInputModel
 @{
-    ViewData["Title"] = "Create Robot";
+    ViewData["Title"] = "Create Sub Assembly";
     var error = ViewData[GlobalConstants.ModelError];
+    var assemblyId = ViewData[GlobalConstants.AssemblyId].ToString();
 }
 
 <section class="banner-area" id="home">
@@ -10,27 +11,26 @@
             <div class="col-md-6">
                 <h2 class="d-flex justify-content-center text-light">@ViewData["Title"]</h2>
                 <hr class="h2" />
-                <form enctype="multipart/form-data" class="mx-auto" asp-controller="Robots" asp-action="CreateRobot" method="post">
+                <form enctype="multipart/form-data" class="mx-auto" asp-controller="SubAssembly" asp-action="Create" method="post">
                     @if (error != null)
                     {
                         <p class="text-danger">@error</p>
                     }
                     <div class="form-group text-center">
                         <label asp-for="Name" class="text-center text-light"></label>
-                        <input asp-for="Name" class="form-control" placeholder="Robot Name..." />
+                        <input asp-for="Name" class="form-control" placeholder="Name..." />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div class="form-group text-center">
-                        <label asp-for="SerialNumber" class="text-center text-light"></label>
-                        <input asp-for="SerialNumber" class="form-control" placeholder="Serial Number..." />
-                        <span asp-validation-for="SerialNumber" class="text-danger"></span>
+                        <label asp-for="Quantity" class="text-center text-light"></label>
+                        <input asp-for="Quantity" class="form-control" placeholder="Quantity..." />
+                        <span asp-validation-for="Quantity" class="text-danger"></span>
                     </div>
                     <div class="form-group text-center">
-                        <label asp-for="Axes" class="text-center text-light"></label>
-                        <input asp-for="Axes" class="form-control" type="number" placeholder="Axes..." />
-                        <span asp-validation-for="Axes" class="text-danger"></span>
+                        <label asp-for="Weight" class="text-center text-light"></label>
+                        <input asp-for="Weight" class="form-control" placeholder="Weight..." />
+                        <span asp-validation-for="Weight" class="text-danger"></span>
                     </div>
-                    <input asp-for="User" type="hidden" value="@this.User.Identity.Name" />
                     <div class="form-group text-center">
                         <label asp-for="Image" class="text-center text-light"></label>
                         <input type="file" asp-for="Image" class="form-control" name="Image" />
@@ -41,7 +41,7 @@
                             </div>
                         }
                     </div>
-
+                    <input type="hidden" value="@assemblyId" asp-for="AssemblyId"/>
 
                     <hr class="h2" />
 

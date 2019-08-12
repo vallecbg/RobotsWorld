@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using RobotsWorld.Data;
 using RobotsWorld.Models;
 using RobotsWorld.Services.Contracts;
@@ -32,6 +34,16 @@ namespace RobotsWorld.Services
             this.Context.SaveChanges();
 
             return assembly.Id;
+        }
+
+        public Assembly GetAssemblyById(string assemblyId)
+        {
+            var assembly = this.Context.Assemblies
+                .Include(x => x.Robot)
+                .Include(x => x.SubAssemblies)
+                .First(x => x.Id == assemblyId);
+
+            return assembly;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using RobotsWorld.ViewModels.InputModels;
+using RobotsWorld.ViewModels.InputModels.Users;
 
 namespace RobotsWorld.Services.Contracts
 {

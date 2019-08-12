@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using RobotsWorld.Services.Constants;
 using RobotsWorld.Services.Contracts;
 using RobotsWorld.ViewModels.InputModels;
+using RobotsWorld.ViewModels.InputModels.Users;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace RobotsWorld.Web.Controllers

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using RobotsWorld.ViewModels.Constants;
 
-namespace RobotsWorld.ViewModels.InputModels
+namespace RobotsWorld.ViewModels.InputModels.Users
 {
     public class LoginInputModel
     {

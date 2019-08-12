@@ -30,5 +30,13 @@ namespace RobotsWorld.ViewModels.Constants
         //Assemblies
         public const int AssemblyNameMaxLength = 100;
         public const int AssemblyNameMinLength = 3;
+
+        //SubAssemblies
+        public const int SubAssemblyNameMaxLength = 100;
+        public const int SubAssemblyNameMinLength = 3;
+        public const int SubAssemblyMaxQuantity = 999;
+        public const int SubAssemblyMinQuantity = 1;
+        public const double SubAssemblyMaxWeight = 999.99;
+        public const double SubAssemblyMinWeight = 0.01;
     }
 }

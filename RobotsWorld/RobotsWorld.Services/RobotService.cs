@@ -123,54 +123,10 @@ namespace RobotsWorld.Services
             robot.Name = model.Name;
             robot.SerialNumber = model.SerialNumber;
             robot.Axes = model.Axes;
-            if (url != null)
-            {
-                robot.ImageUrl = url ?? GlobalConstants.NoImageAvailableUrl;
-            }
+            robot.ImageUrl = url ?? GlobalConstants.NoImageAvailableUrl;
 
             this.Context.Robots.Update(robot);
             this.Context.SaveChanges();
-        }
-
-
-        private async Task<string> UploadImage(Cloudinary cloudinary, IFormFile fileform, string name)
-        {
-            if (fileform == null)
-            {
-                return null;
-            }
-
-            byte[] storyImage;
-
-            using (var memoryStream = new MemoryStream())
-            {
-                await fileform.CopyToAsync(memoryStream);
-                storyImage = memoryStream.ToArray();
-            }
-
-            var ms = new MemoryStream(storyImage);
-
-            var uploadParams = new ImageUploadParams()
-            {
-                File = new FileDescription(name, ms),
-                Transformation = new Transformation().Width(200).Height(250).Crop("fit").SetHtmlWidth(250).SetHtmlHeight(100)
-            };
-
-            var uploadResult = cloudinary.Upload(uploadParams);
-
-            ms.Dispose();
-            return uploadResult.SecureUri.AbsoluteUri;
-        }
-
-        private Cloudinary SetCloudinary()
-        {
-            Account account = new Account(
-                GlobalConstants.CloudinaryCloudName, GlobalConstants.CloudinaryApiKey,
-                GlobalConstants.CloudinaryApiSecret);
-
-            Cloudinary cloudinary = new Cloudinary(account);
-
-            return cloudinary;
         }
     }
 }

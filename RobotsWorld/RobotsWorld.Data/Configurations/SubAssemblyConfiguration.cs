@@ -21,7 +21,9 @@ namespace RobotsWorld.Data.Configurations
 
             builder.Property(x => x.ImageUrl).IsRequired(false);
 
-            builder.HasMany(x => x.Parts);
+            builder.HasMany(x => x.Parts)
+                .WithOne(x => x.SubAssembly)
+                .HasForeignKey(x => x.SubAssemblyId);
         }
     }
 }
