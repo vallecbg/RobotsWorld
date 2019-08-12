@@ -9,7 +9,7 @@ namespace RobotsWorld.Services.Contracts
 {
     public interface IAssemblyService
     {
-        string Create(string robotId);
+        Task<string> Create(string robotId);
 
         Assembly GetAssemblyById(string assemblyId);
     }

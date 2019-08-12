@@ -19,7 +19,7 @@ namespace RobotsWorld.Services
         {
         }
 
-        public string Create(string robotId)
+        public async Task<string> Create(string robotId)
         {
             var assembly = new Assembly();
 
@@ -31,7 +31,7 @@ namespace RobotsWorld.Services
 
             this.Context.Assemblies.Add(assembly);
             this.Context.Robots.Update(robot);
-            this.Context.SaveChanges();
+            await this.Context.SaveChangesAsync();
 
             return assembly.Id;
         }
@@ -39,8 +39,8 @@ namespace RobotsWorld.Services
         public Assembly GetAssemblyById(string assemblyId)
         {
             var assembly = this.Context.Assemblies
-                .Include(x => x.Robot)
                 .Include(x => x.SubAssemblies)
+                .Include(x => x.Robot)
                 .First(x => x.Id == assemblyId);
 
             return assembly;

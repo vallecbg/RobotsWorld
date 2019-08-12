@@ -72,6 +72,9 @@ namespace RobotsWorld.Services
         {
             var robot = this.Context.Robots
                 .Include(x => x.User)
+                .Include(x => x.Assembly)
+                .ThenInclude(x => x.SubAssemblies)
+                .ThenInclude(x => x.Parts)
                 .First(x => x.Id == robotId);
 
             var user = this.UserManager.FindByNameAsync(username).GetAwaiter().GetResult();
@@ -86,8 +89,10 @@ namespace RobotsWorld.Services
                 throw new InvalidOperationException(GlobalConstants.UserHasNoRights);
             }
 
-
             this.Context.Remove(robot);
+            this.Context.Remove(robot.Assembly);
+            this.Context.RemoveRange(robot.Assembly.SubAssemblies);
+            this.Context.RemoveRange(robot.Assembly.SubAssemblies.SelectMany(x => x.Parts));
             this.Context.SaveChangesAsync().GetAwaiter().GetResult();
         }
 
@@ -124,7 +129,11 @@ namespace RobotsWorld.Services
             robot.Name = model.Name;
             robot.SerialNumber = model.SerialNumber;
             robot.Axes = model.Axes;
-            robot.ImageUrl = url ?? GlobalConstants.NoImageAvailableUrl;
+            if (url != null)
+            {
+                robot.ImageUrl = url;
+            }
+           
 
             this.Context.Robots.Update(robot);
             this.Context.SaveChanges();

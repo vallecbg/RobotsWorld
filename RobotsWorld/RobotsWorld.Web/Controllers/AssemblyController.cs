@@ -20,9 +20,9 @@ namespace RobotsWorld.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(string robotId)
+        public async Task<IActionResult> Create(string robotId)
         {
-            this.assemblyService.Create(robotId);
+            await this.assemblyService.Create(robotId);
 
             return RedirectToAction("Details", "Robots", new { id = robotId });
         }

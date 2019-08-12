@@ -1,4 +1,9 @@
+*For investigation*
+
+
 *Major*
+- Check the validation of subassembly and parts creating
+- Center the image in robots details
 - Check if it's needed password protection
 - Add Error page
 - I can add table with website info like for contacts etc.

@@ -29,7 +29,7 @@ namespace RobotsWorld.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(PartInputModel model)
+        public async Task<IActionResult> Create(PartInputModel model)
         {
             if (!this.ModelState.IsValid)
             {

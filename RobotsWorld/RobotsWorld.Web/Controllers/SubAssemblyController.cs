@@ -31,14 +31,14 @@ namespace RobotsWorld.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(SubAssemblyInputModel model)
+        public async Task<IActionResult> Create(SubAssemblyInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View();
             }
 
-            this.subAssemblyService.Create(model);
+            await this.subAssemblyService.Create(model);
 
             var assembly = this.assemblyService.GetAssemblyById(model.AssemblyId);
 
