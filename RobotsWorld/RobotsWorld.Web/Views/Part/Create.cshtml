@@ -1,8 +1,11 @@
-﻿@model SubAssemblyInputModel
+﻿@using RobotsWorld.Services.Contracts
+@model PartInputModel
+@inject IVendorService VendorService
 @{
-    ViewData["Title"] = "Create Sub Assembly";
+    ViewData["Title"] = "Create Part";
     var error = ViewData[GlobalConstants.ModelError];
-    var assemblyId = ViewData[GlobalConstants.AssemblyId].ToString();
+    var subAssemblyId = ViewData[GlobalConstants.SubAssemblyId].ToString();
+    var allVendorNames = VendorService.GetAllVendorNames();
 }
 
 <section class="banner-area" id="home">
@@ -11,7 +14,7 @@
             <div class="col-md-6">
                 <h2 class="d-flex justify-content-center text-light">@ViewData["Title"]</h2>
                 <hr class="h2" />
-                <form enctype="multipart/form-data" class="mx-auto" asp-controller="SubAssembly" asp-action="Create" method="post">
+                <form enctype="multipart/form-data" class="mx-auto" asp-controller="Part" asp-action="Create" method="post">
                     @if (error != null)
                     {
                         <p class="text-danger">@error</p>
@@ -27,21 +30,21 @@
                         <span asp-validation-for="Quantity" class="text-danger"></span>
                     </div>
                     <div class="form-group text-center">
-                        <label asp-for="Weight" class="text-center text-light"></label>
-                        <input asp-for="Weight" class="form-control" placeholder="Weight..." />
-                        <span asp-validation-for="Weight" class="text-danger"></span>
+                        <label asp-for="Price" class="text-center text-light"></label>
+                        <input asp-for="Price" class="form-control" placeholder="Price..." />
+                        <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
                     <div class="form-group text-center">
-                        <label asp-for="Image" class="text-center text-light"></label>
-                        <input type="file" asp-for="Image" class="form-control" name="Image" />
-                        @if (ViewData.ContainsKey(GlobalConstants.Error))
-                        {
-                            <div class="row col-md-12">
-                                <span class="row ml-1 text-danger ">@ViewData[GlobalConstants.Error]</span>
-                            </div>
-                        }
+                        <select asp-for="VendorName" class="browser-default custom-select custom-select-lg mb-3">
+                            <option disabled selected>---Select Vendor---</option>
+                            @foreach (var vendor in allVendorNames)
+                            {
+                                <option>@vendor</option>
+                            }
+                        </select>
+
                     </div>
-                    <input type="hidden" value="@assemblyId" asp-for="AssemblyId"/>
+                    <input type="hidden" value="@subAssemblyId" asp-for="SubAssemblyId" />
 
                     <hr class="h2" />
 

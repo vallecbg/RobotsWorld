@@ -60,6 +60,7 @@ namespace RobotsWorld.Services
                 .Include(x => x.User)
                 .Include(x => x.Assembly)
                 .ThenInclude(x => x.SubAssemblies)
+                .ThenInclude(x => x.Parts)
                 .FirstOrDefault(x => x.Id == robotId);
 
             var robotOutput = Mapper.Map<RobotOutputModel>(robot);

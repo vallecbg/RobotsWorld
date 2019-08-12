@@ -14,11 +14,12 @@ namespace RobotsWorld.Services.Constants
         public class RouteConstants
         {
             public const string CreateSubAssemblyRoute = "/SubAssembly/Create/{assemblyId}";
+            public const string CreatePartRoute = "/Part/Create/{subAssemblyId}";
         }
 
-        //Robots
-        public const string RobotId = "robotId";
+        //Ids
         public const string AssemblyId = "assemblyId";
+        public const string SubAssemblyId = "subAssemblyId";
 
         //Users
         public const string RegisterError = "There's already an registered user with this username or name!";

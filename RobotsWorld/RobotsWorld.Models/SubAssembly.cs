@@ -21,7 +21,20 @@ namespace RobotsWorld.Models
 
         public int Quantity { get; set; }
 
-        public decimal TotalPrice => this.Parts.Any() ? this.Parts.Sum(x => x.Price * x.Quantity) : 0;
+        public decimal PartsPrice
+        {
+            get
+            {
+                if (this.Parts.Any())
+                {
+                    return this.Parts.Sum(x => x.Price * x.Quantity);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
 
         public double Weight { get; set; }
 

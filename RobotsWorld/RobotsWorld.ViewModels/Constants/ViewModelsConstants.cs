@@ -38,5 +38,13 @@ namespace RobotsWorld.ViewModels.Constants
         public const int SubAssemblyMinQuantity = 1;
         public const double SubAssemblyMaxWeight = 999.99;
         public const double SubAssemblyMinWeight = 0.01;
+
+        //Parts
+        public const int PartNameMaxLength = 200;
+        public const int PartNameMinLength = 1;
+        public const double PartMinPrice = 0.01;
+        public const double PartMaxPrice = double.MaxValue;
+        public const int PartMaxQuantity = 999;
+        public const int PartMinQuantity = 1;
     }
 }
