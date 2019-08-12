@@ -24,6 +24,10 @@ namespace RobotsWorld.ViewModels.OutputModels.Robots
 
         public string AssemblyId { get; set; }
 
+        public decimal TotalPrice { get; set; }
+
+        public double TotalWeight { get; set; }
+
         public ICollection<SubAssemblyOutputModel> SubAssemblies { get; set; }
     }
 }

@@ -31,7 +31,9 @@ namespace RobotsWorld.Services.Mapper
                 .ForMember(x => x.User, cfg => cfg.MapFrom(x => x.User.UserName))
                 .ForMember(x => x.AssembliesCount, cfg => cfg.MapFrom(x => x.Assembly.SubAssemblies.Count))
                 .ForMember(x => x.AssemblyId, cfg => cfg.MapFrom(x => x.Assembly.Id))
-                .ForMember(x => x.SubAssemblies, cfg => cfg.MapFrom(x => x.Assembly.SubAssemblies));
+                .ForMember(x => x.SubAssemblies, cfg => cfg.MapFrom(x => x.Assembly.SubAssemblies))
+                .ForMember(x => x.TotalPrice, cfg => cfg.MapFrom(x => x.Assembly.TotalPrice))
+                .ForMember(x => x.TotalWeight, cfg => cfg.MapFrom(x => x.Assembly.TotalWeight));
 
             CreateMap<SubAssemblyInputModel, SubAssembly>()
                 .ForMember(x => x.Name, cfg => cfg.MapFrom(x => x.Name))
