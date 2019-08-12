@@ -22,14 +22,14 @@
             </tr>
         </tfoot>
         <tbody>
-            @foreach (var assembly in Model)
+            @foreach (var subAssembly in Model)
             {
                 <tr>
-                    <td>@assembly.Name</td>
-                    <td>@assembly.Quantity</td>
-                    <td>@assembly.Weight</td>
-                    <td>$@assembly.TotalPrice</td>
-                    <td><a href="" class="btn btn-success"><i class="fa fa-plus-square"></i></a></td>
+                    <td>@subAssembly.Name</td>
+                    <td>@subAssembly.Quantity</td>
+                    <td>@subAssembly.Weight</td>
+                    <td>$@subAssembly.TotalPrice</td>
+                    <td><a asp-controller="Part" asp-action="Create" asp-route-subAssemblyId="@subAssembly.Id" class="btn btn-success"><i class="fa fa-plus-square"></i></a></td>
                 </tr>
             }
         </tbody>

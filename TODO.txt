@@ -8,6 +8,7 @@
 - Add the template on privacy
 - Make authorize everywhere needed
 - Think about deleting assembly should become null
+- Add api support
 
 *Minor*
 - Facebook posting like wall
