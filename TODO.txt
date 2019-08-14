@@ -6,11 +6,7 @@
 - Check if it's needed password protection
 - Add Error page
 - I can add table with website info like for contacts etc.
-- User robots, if you don't have already made a robot you should make one
-- Add the users input models in folders
 - Maybe i can add createdon or something with datetime
-- Add the template on privacy
-- Make authorize everywhere needed
 - Think about deleting assembly should become null
 - Add api support
 
@@ -20,3 +16,4 @@
 - Make cart where you can buy already made robots using tables
 - I can add delivery of the robots using google maps for starting point and end point and also use the maps in the about us page
 - I can add ensurance of the robots and notification when you have to pay
+- Get the images in the footer from somewhere

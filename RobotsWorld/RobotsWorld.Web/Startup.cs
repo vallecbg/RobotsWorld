@@ -53,7 +53,7 @@ namespace RobotsWorld.Web
                     opt.Password.RequireLowercase = false;
                     opt.Password.RequireNonAlphanumeric = false;
                     opt.Password.RequireUppercase = false;
-                    opt.Password.RequiredLength = 3;
+                    opt.Password.RequiredLength = 6;
                     opt.Password.RequiredUniqueChars = 0;
                 })
                 .AddEntityFrameworkStores<RobotsWorldContext>()
