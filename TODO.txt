@@ -2,8 +2,6 @@
 
 
 *Major*
-- Check all controllers for authorize
-- Check the validation of subassembly and parts creating
 - Center the image in robots details
 - Check if it's needed password protection
 - Add Error page

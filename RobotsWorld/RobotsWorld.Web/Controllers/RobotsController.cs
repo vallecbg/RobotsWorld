@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RobotsWorld.Services.Constants;
 using RobotsWorld.Services.Contracts;
@@ -9,6 +10,7 @@ using RobotsWorld.ViewModels.InputModels.Robots;
 
 namespace RobotsWorld.Web.Controllers
 {
+    [Authorize]
     public class RobotsController : Controller
     {
         private readonly IRobotService robotService;

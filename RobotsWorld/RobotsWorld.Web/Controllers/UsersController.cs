@@ -83,6 +83,7 @@ namespace RobotsWorld.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Logout()
         {
             this.userService.Logout();
