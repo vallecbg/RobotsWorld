@@ -88,8 +88,24 @@ namespace RobotsWorld.Web.Controllers
         [HttpPost]
         public IActionResult Edit(RobotEditModel model)
         {
+            bool imageNotNull = model.Image != null;
+            bool wrongType = false;
+
+            if (imageNotNull)
+            {
+                var fileType = model.Image.ContentType.Split('/')[1];
+
+                wrongType = GlobalConstants.ImageExtensions.Contains(fileType);
+            }
+
             if (!ModelState.IsValid)
             {
+                return this.View(model);
+            }
+
+            if (!wrongType && imageNotNull)
+            {
+                this.ViewData[GlobalConstants.Error] = GlobalConstants.WrongFileType;
                 return this.View(model);
             }
 

@@ -24,7 +24,8 @@ namespace RobotsWorld.ViewModels.Constants
         //Robots
         public const int RobotNameMaxLength = 100;
         public const int RobotNameMinLength = 3;
-        public const int SerialNumberLength = 200;
+        public const int SerialNumberMaxLength = 200;
+        public const int SerialNumberMinLength = 3;
         public const string ImageDisplay = "Image";
 
         //Assemblies

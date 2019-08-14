@@ -16,8 +16,8 @@ namespace RobotsWorld.ViewModels.InputModels.Robots
         [DataType(DataType.Text)]
         public string Name { get; set; }
 
-        [DataType(DataType.MultilineText)]
-        [StringLength(ViewModelsConstants.SerialNumberLength)]
+        [Required]
+        [StringLength(ViewModelsConstants.SerialNumberMaxLength, MinimumLength = ViewModelsConstants.SerialNumberMinLength)]
         public string SerialNumber { get; set; }
 
         [Required]

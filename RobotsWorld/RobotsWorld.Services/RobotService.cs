@@ -90,9 +90,16 @@ namespace RobotsWorld.Services
             }
 
             this.Context.Remove(robot);
-            this.Context.Remove(robot.Assembly);
-            this.Context.RemoveRange(robot.Assembly.SubAssemblies);
-            this.Context.RemoveRange(robot.Assembly.SubAssemblies.SelectMany(x => x.Parts));
+            if (robot.Assembly != null)
+            {
+                this.Context.Remove(robot.Assembly);
+                if (robot.Assembly.SubAssemblies != null)
+                {
+                    this.Context.RemoveRange(robot.Assembly.SubAssemblies);
+                    this.Context.RemoveRange(robot.Assembly.SubAssemblies.SelectMany(x => x.Parts));
+                }
+            }
+
             this.Context.SaveChangesAsync().GetAwaiter().GetResult();
         }
 

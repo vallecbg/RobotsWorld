@@ -33,9 +33,9 @@
                             <h1 class="lead font-weight-bold">@Model.Name</h1>
 
                             <p>
-                                S/N: @Model.SerialNumber<br />
+                                S/N: (@Model.SerialNumber)<br />
                                 Axes: @Model.Axes <br />
-                                Creator: @Model.User <br />
+                                Owner: @Model.User <br />
                                 Sub Assemblies: @Model.AssembliesCount <br/>
                                 Total Price: $@Model.TotalPrice <br/>
                                 Total Weight: @Model.TotalWeight KG
@@ -44,8 +44,8 @@
                         </div>
                         <!--Content-->
                         <div class="col-lg-4 col-sm-12">
-                            <a class="btn btn-warning" asp-controller="Robots" asp-action="Edit" asp-route-id="@Model.Id"><i class="fas fa-edit text-light"></i></a>
-                            <a class="btn btn-danger" asp-controller="Robots" asp-action="Delete" asp-route-id="@Model.Id"><i class="fas fa-trash"></i></a>
+                            <a class="btn btn-warning text-white" asp-controller="Robots" asp-action="Edit" asp-route-id="@Model.Id">Edit <i class="fas fa-edit text-light"></i></a>
+                            <a class="btn btn-danger" asp-controller="Robots" asp-action="Delete" asp-route-id="@Model.Id">Delete <i class="fas fa-trash"></i></a>
                         </div>
                     </div>
                     <!--Grid column-->

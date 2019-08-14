@@ -6,21 +6,23 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
+    <li class="menu-active"><a href="/Home/#myRobots">My Robots</a></li>
+    <li class="menu-active"><a href="/Home/#createRobot">Create Robot</a></li>
     <li>
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+        <a class="nav-link menu-active" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
     </li>
     <li>
         <li>
-            <a class="nav-link btn btn-link text-dark" asp-controller="Users" asp-action="Logout">Logout</a>
+            <a class="nav-link btn btn-link menu-active" asp-controller="Users" asp-action="Logout">Logout</a>
         </li>
     </li>
 }
 else
 {
     <li>
-        <a class="nav-link text-dark" asp-controller="Users" asp-action="Register">Register</a>
+        <a class="nav-link menu-active" asp-controller="Users" asp-action="Register">Register</a>
     </li>
     <li>
-        <a class="nav-link text-dark" asp-controller="Users" asp-action="Login">Login</a>
+        <a class="nav-link menu-active" asp-controller="Users" asp-action="Login">Login</a>
     </li>
 }
