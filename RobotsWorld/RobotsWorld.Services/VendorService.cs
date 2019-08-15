@@ -34,5 +34,13 @@ namespace RobotsWorld.Services
 
             return vendor;
         }
+
+        public bool CheckVendorIsValid(string vendorName)
+        {
+            bool exists = this.Context.Vendors
+                .Any(x => x.Name == vendorName);
+
+            return exists;
+        }
     }
 }

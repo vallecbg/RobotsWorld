@@ -14,10 +14,12 @@ namespace RobotsWorld.Web.Controllers
     public class PartController : Controller
     {
         private readonly IPartService partService;
+        private readonly IVendorService vendorService;
 
-        public PartController(IPartService partService)
+        public PartController(IPartService partService, IVendorService vendorService)
         {
             this.partService = partService;
+            this.vendorService = vendorService;
         }
 
         [HttpGet]
@@ -31,7 +33,8 @@ namespace RobotsWorld.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(PartInputModel model)
         {
-            if (!this.ModelState.IsValid)
+            bool checkVendorIsValid = this.vendorService.CheckVendorIsValid(model.VendorName);
+            if (!this.ModelState.IsValid || !checkVendorIsValid)
             {
                 return this.View();
             }

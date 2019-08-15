@@ -10,5 +10,7 @@ namespace RobotsWorld.Services.Contracts
         ICollection<string> GetAllVendorNames();
 
         Vendor GetVendorByName(string vendorName);
+
+        bool CheckVendorIsValid(string vendorName);
     }
 }
