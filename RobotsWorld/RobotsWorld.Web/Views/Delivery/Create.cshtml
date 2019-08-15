@@ -1,0 +1,54 @@
+﻿@using System.Security.Claims
+@model DeliveryInputModel
+@{
+    ViewData["Title"] = "Add Delivery";
+    var error = ViewData[GlobalConstants.ModelError];
+    var robotId = ViewData[GlobalConstants.RobotId].ToString();
+    var senderId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+}
+
+<section class="banner-area" id="home">
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-center">
+            <div class="col-md-6">
+                <h2 class="d-flex justify-content-center text-light">@ViewData["Title"]</h2>
+                <hr class="h2" />
+                <form enctype="multipart/form-data" class="mx-auto" asp-controller="Delivery" asp-action="Create" method="post">
+                    @if (error != null)
+                    {
+                        <p class="text-danger">@error</p>
+                    }
+                    <div class="form-group text-center">
+                        <label asp-for="StartingPoint" class="text-center text-light"></label>
+                        <input asp-for="StartingPoint" class="form-control" placeholder="Starting Point Name..." />
+                        <span asp-validation-for="StartingPoint" class="text-danger"></span>
+                    </div>
+                    <div class="form-group text-center">
+                        <label asp-for="DestinationPoint" class="text-center text-light"></label>
+                        <input asp-for="DestinationPoint" class="form-control" placeholder="Destination Point Name..." />
+                        <span asp-validation-for="DestinationPoint" class="text-danger"></span>
+                    </div>
+                    <div class="form-group text-center">
+                        <label asp-for="ReceiverUsername" class="text-center text-light"></label>
+                        <input asp-for="ReceiverUsername" class="form-control" placeholder="Receiver Username..." />
+                        <span asp-validation-for="ReceiverUsername" class="text-danger"></span>
+                    </div>
+                    <div class="form-group text-center">
+                        <label asp-for="Price" class="text-center text-light"></label>
+                        <input asp-for="Price" class="form-control" placeholder="Price..." />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" value="@robotId" asp-for="RobotId" />
+                    <input type="hidden" value="@senderId" asp-for="SenderId" />
+
+                    <hr class="h2" />
+
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-info">Create</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

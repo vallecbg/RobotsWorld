@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RobotsWorld.Models
 {
     public class Robot
     {
+        public Robot()
+        {
+            this.Deliveries = new HashSet<Delivery>();
+        }
+
         public string Id { get; set; }
 
         public string Name { get; set; }
@@ -18,5 +24,7 @@ namespace RobotsWorld.Models
 
         public string UserId { get; set; }
         public User User { get; set; }
+
+        public ICollection<Delivery> Deliveries { get; set; }
     }
 }

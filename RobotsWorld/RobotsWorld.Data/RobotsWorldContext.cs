@@ -15,6 +15,7 @@ namespace RobotsWorld.Data
         public DbSet<SubAssembly> SubAssemblies { get; set; }
         public DbSet<Part> Parts { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
+        public DbSet<Delivery> Deliveries { get; set; }
 
 
         public RobotsWorldContext(DbContextOptions options)
@@ -30,6 +31,7 @@ namespace RobotsWorld.Data
             builder.ApplyConfiguration(new RobotsConfiguration());
             builder.ApplyConfiguration(new PartConfiguration());
             builder.ApplyConfiguration(new VendorConfiguration());
+            builder.ApplyConfiguration(new DeliveryConfiguration());
 
             base.OnModelCreating(builder);
         }

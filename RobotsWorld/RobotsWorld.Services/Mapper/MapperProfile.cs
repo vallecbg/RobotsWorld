@@ -6,6 +6,7 @@ using AutoMapper;
 using RobotsWorld.Models;
 using RobotsWorld.ViewModels.InputModels;
 using RobotsWorld.ViewModels.InputModels.Assemblies;
+using RobotsWorld.ViewModels.InputModels.Deliveries;
 using RobotsWorld.ViewModels.InputModels.Parts;
 using RobotsWorld.ViewModels.InputModels.Robots;
 using RobotsWorld.ViewModels.InputModels.SubAssemblies;
@@ -50,6 +51,11 @@ namespace RobotsWorld.Services.Mapper
             CreateMap<SubAssembly, SubAssemblyOutputModel>()
                 .ForMember(x => x.TotalPrice, cfg => cfg.MapFrom(x => x.PartsPrice));
 
+            CreateMap<DeliveryInputModel, Delivery>()
+                .ForMember(x => x.StartingPoint, cfg => cfg.MapFrom(x => x.StartingPoint))
+                .ForMember(x => x.DestinationPoint, cfg => cfg.MapFrom(x => x.DestinationPoint))
+                .ForMember(x => x.Price, cfg => cfg.MapFrom(x => x.Price))
+                .ForAllOtherMembers(x => x.Ignore());
         }
     }
 }

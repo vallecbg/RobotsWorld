@@ -15,9 +15,11 @@ namespace RobotsWorld.Services.Constants
         {
             public const string CreateSubAssemblyRoute = "/SubAssembly/Create/{assemblyId}";
             public const string CreatePartRoute = "/Part/Create/{subAssemblyId}";
+            public const string CreateDeliveryRoute = "/Delivery/Create/{robotId}";
         }
 
         //Ids
+        public const string RobotId = "robotId";
         public const string AssemblyId = "assemblyId";
         public const string SubAssemblyId = "subAssemblyId";
 

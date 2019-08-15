@@ -47,5 +47,15 @@ namespace RobotsWorld.ViewModels.Constants
         public const double PartMaxPrice = double.MaxValue;
         public const int PartMaxQuantity = 999;
         public const int PartMinQuantity = 1;
+
+        //Deliveries
+        public const int DeliveryStartPointMinLength = 1;
+        public const int DeliveryStartPointMaxLength = 200;
+        public const int DeliveryDestinationPointMinLength = 1;
+        public const int DeliveryDestinationPointMaxLength = 200;
+        public const double DeliveryMinPrice = 0.01;
+        public const double DeliveryMaxPrice = double.MaxValue;
+        public const int DeliveryReceiverUsernameMinLength = 3;
+        public const int DeliveryReceiverUsernameMaxLength = 200;
     }
 }

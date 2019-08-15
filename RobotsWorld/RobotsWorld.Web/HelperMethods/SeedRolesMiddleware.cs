@@ -59,8 +59,8 @@ namespace RobotsWorld.Web.HelperMethods
                 Name = "The User"
             };
 
-            string normalUserPass = "user";
-            string adminPass = "admin";
+            string normalUserPass = "user123";
+            string adminPass = "admin123";
 
             await userManager.CreateAsync(user, adminPass);
             await userManager.CreateAsync(normalUser, normalUserPass);

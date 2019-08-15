@@ -22,41 +22,83 @@
 </section>
 <!-- End banner Area -->
 <!-- Start about-video Area -->
-@if (userRobots.Any())
-{
-    <section class="products-area product-page section-gap">
-        <div class="container">
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-12 pb-40 header-text text-center">
-                    <h1 class="pb-10">Your Featured Robots</h1>
-                    <p>
-                        Who are in extremely love with eco friendly system.
-                    </p>
-                </div>
-            </div>
-            <div class="row" id="myRobots">
-                @foreach (var robot in userRobots)
-                {
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product">
-                            <div class="thumb">
-                                <img src="@robot.ImageUrl" class="img-fluid" style="max-height: 175px">
-                            </div>
-                            <div class="details">
-                                <h4>@robot.Name</h4>
-                                <p>
-                                    S/N: @robot.SerialNumber <br/>
-                                    Axes: @robot.Axes
-                                </p>
-                                <a asp-controller="Robots" asp-action="Details" asp-route-id="@robot.Id" class="primary-btn text-uppercase">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                }
+<style>
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #map {
+        height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<div id="map"></div>
+<script>
+
+    function initMap() {
+        var myLatLng = { lat: -25.363, lng: 131.044 };
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js&callback=initMap">
+</script>
+<section class="products-area product-page section-gap">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12 pb-40 header-text text-center">
+                <h1 class="pb-10">Your Featured Robots</h1>
+                <p>
+                    Who are in extremely love with eco friendly system.
+                </p>
             </div>
         </div>
-    </section>
-}
+        <div id="myRobots">
+            @if (userRobots.Any())
+            {
+                <div class="row">
+                    @foreach (var robot in userRobots)
+                    {
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single-product">
+                                <div class="thumb">
+                                    <img src="@robot.ImageUrl" class="img-fluid" style="max-height: 175px">
+                                </div>
+                                <div class="details">
+                                    <h4>@robot.Name</h4>
+                                    <p>
+                                        S/N: @robot.SerialNumber <br />
+                                        Axes: @robot.Axes
+                                    </p>
+                                    <a asp-controller="Robots" asp-action="Details" asp-route-id="@robot.Id" class="primary-btn text-uppercase">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="row d-flex justify-content-center">
+                    <p>You have no robots!</p>
+                </div>
+            }
+        </div>
+    </div>
+</section>
 <section class="about-video-area section-gap" id="createRobot">
     <div class="container">
         <div class="row align-items-center">

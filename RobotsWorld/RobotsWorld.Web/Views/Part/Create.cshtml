@@ -35,6 +35,7 @@
                         <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
                     <div class="form-group text-center">
+                        <label asp-for="VendorName" class="text-center text-light"></label>
                         <select asp-for="VendorName" class="browser-default custom-select custom-select-lg mb-3">
                             <option disabled selected>---Select Vendor---</option>
                             @foreach (var vendor in allVendorNames)

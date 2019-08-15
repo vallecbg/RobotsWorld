@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RobotsWorld.Data.Migrations
 {
-    public partial class AddedTotalWeight : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -207,6 +207,31 @@ namespace RobotsWorld.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Deliveries",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    RobotId = table.Column<string>(nullable: true),
+                    SentOn = table.Column<DateTime>(nullable: false),
+                    StartingPoint = table.Column<string>(nullable: false),
+                    StartingLatitude = table.Column<string>(nullable: true),
+                    StartingLongtitude = table.Column<string>(nullable: true),
+                    DestinationPoint = table.Column<string>(nullable: false),
+                    DestinationLatitude = table.Column<string>(nullable: true),
+                    DestinationLongtitude = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Deliveries", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Deliveries_Robots_RobotId",
+                        column: x => x.RobotId,
+                        principalTable: "Robots",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SubAssemblies",
                 columns: table => new
                 {
@@ -303,6 +328,11 @@ namespace RobotsWorld.Data.Migrations
                 filter: "[RobotId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Deliveries_RobotId",
+                table: "Deliveries",
+                column: "RobotId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Parts_SubAssemblyId",
                 table: "Parts",
                 column: "SubAssemblyId");
@@ -339,6 +369,9 @@ namespace RobotsWorld.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Deliveries");
 
             migrationBuilder.DropTable(
                 name: "Parts");

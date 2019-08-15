@@ -10,8 +10,8 @@ using RobotsWorld.Data;
 namespace RobotsWorld.Data.Migrations
 {
     [DbContext(typeof(RobotsWorldContext))]
-    [Migration("20190808171948_AddedTotalWeight")]
-    partial class AddedTotalWeight
+    [Migration("20190815073559_AddedUsersInDelivery")]
+    partial class AddedUsersInDelivery
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -145,6 +145,44 @@ namespace RobotsWorld.Data.Migrations
                         .HasFilter("[RobotId] IS NOT NULL");
 
                     b.ToTable("Assemblies");
+                });
+
+            modelBuilder.Entity("RobotsWorld.Models.Delivery", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("DestinationLatitude");
+
+                    b.Property<string>("DestinationLongtitude");
+
+                    b.Property<string>("DestinationPoint")
+                        .IsRequired();
+
+                    b.Property<string>("ReceiverId");
+
+                    b.Property<string>("RobotId");
+
+                    b.Property<string>("SenderId");
+
+                    b.Property<DateTime>("SentOn");
+
+                    b.Property<string>("StartingLatitude");
+
+                    b.Property<string>("StartingLongtitude");
+
+                    b.Property<string>("StartingPoint")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReceiverId");
+
+                    b.HasIndex("RobotId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Deliveries");
                 });
 
             modelBuilder.Entity("RobotsWorld.Models.Part", b =>
@@ -335,6 +373,21 @@ namespace RobotsWorld.Data.Migrations
                     b.HasOne("RobotsWorld.Models.Robot", "Robot")
                         .WithOne("Assembly")
                         .HasForeignKey("RobotsWorld.Models.Assembly", "RobotId");
+                });
+
+            modelBuilder.Entity("RobotsWorld.Models.Delivery", b =>
+                {
+                    b.HasOne("RobotsWorld.Models.User", "Receiver")
+                        .WithMany()
+                        .HasForeignKey("ReceiverId");
+
+                    b.HasOne("RobotsWorld.Models.Robot", "Robot")
+                        .WithMany("Deliveries")
+                        .HasForeignKey("RobotId");
+
+                    b.HasOne("RobotsWorld.Models.User", "Sender")
+                        .WithMany()
+                        .HasForeignKey("SenderId");
                 });
 
             modelBuilder.Entity("RobotsWorld.Models.Part", b =>
