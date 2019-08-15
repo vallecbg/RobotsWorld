@@ -123,6 +123,17 @@ namespace RobotsWorld.Services
             return count;
         }
 
+        public bool CheckUserIsOwnerOfRobot(string userId, string robotId)
+        {
+            var robot = this.Context.Robots
+                .Include(x => x.User)
+                .First(x => x.Id == robotId);
+
+            bool isOwner = robot.UserId == userId;
+
+            return isOwner;
+        }
+
         public void EditRobot(RobotEditModel model)
         {
             var robot = this.Context.Robots

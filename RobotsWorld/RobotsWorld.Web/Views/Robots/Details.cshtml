@@ -8,6 +8,8 @@
 @{
     ViewData["Title"] = "Robot Details";
     var assembliesCount = RobotService.GetAssembliesCount(@Model.Id);
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    bool isOwner = RobotService.CheckUserIsOwnerOfRobot(userId, @Model.Id);
 }
 <section class="banner-area relative" id="home">
     <div class="container">
@@ -43,11 +45,14 @@
 
                         </div>
                         <!--Content-->
-                        <div class="col-lg-4 col-sm-12">
-                            <a class="btn btn-warning text-white" asp-controller="Robots" asp-action="Edit" asp-route-id="@Model.Id">Edit <i class="fas fa-edit text-light"></i></a>
-                            <a class="btn btn-danger" asp-controller="Robots" asp-action="Delete" asp-route-id="@Model.Id">Delete <i class="fas fa-trash"></i></a>
-                            <a class="btn btn-danger" asp-controller="Delivery" asp-action="Create" asp-route-id="@Model.Id">Ship <i class="fas fa-trash"></i></a>
-                        </div>
+                        @if (isOwner)
+                        {
+                            <div class="col-lg-12 col-sm-12">
+                                <a class="btn btn-warning text-white" asp-controller="Robots" asp-action="Edit" asp-route-id="@Model.Id">Edit <i class="fas fa-edit text-light"></i></a>
+                                <a class="btn btn-danger" asp-controller="Robots" asp-action="Delete" asp-route-id="@Model.Id">Delete <i class="fas fa-trash"></i></a>
+                                <a class="btn btn-success" asp-controller="Delivery" asp-action="Create" asp-route-id="@Model.Id">Ship <i class="fas fa-shipping-fast"></i></a>
+                            </div>
+                        }
                     </div>
                     <!--Grid column-->
                 </div>
