@@ -13,5 +13,6 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="CloudinaryDotNet" Version="1.7.0" />
+    <PackageReference Include="GoogleMaps.LocationServices" Version="1.2.0.2" />
   </ItemGroup>
 </Project>

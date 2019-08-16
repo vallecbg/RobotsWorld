@@ -3,6 +3,9 @@
 
 *Major*
 - Add delivery details
+- Add my deliveries menu
+- Add transport type to delivery
+- See the newsletter subscribe
 - Add Sub Assembly Details
 - Add User details
 - Center the image in robots details

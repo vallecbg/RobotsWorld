@@ -23,7 +23,7 @@ namespace RobotsWorld.Models
         //public string Name { get; set; }
 
         //TODO: Check it
-        public decimal TotalPrice => this.SubAssemblies.Any() ? this.SubAssemblies.Sum(x => x.PartsPrice * x.Quantity) : 0;
+        public decimal TotalPrice => this.SubAssemblies.Any() ? this.SubAssemblies.Sum(x => x.PartsPrice * x.Quantity) + this.Robot.Deliveries.Sum(x => x.Price) : 0;
 
         public double TotalWeight => this.SubAssemblies.Any() ? this.SubAssemblies.Sum(x => x.Weight * x.Quantity) : 0;
 

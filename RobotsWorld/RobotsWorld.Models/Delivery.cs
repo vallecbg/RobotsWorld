@@ -20,13 +20,11 @@ namespace RobotsWorld.Models
         public DateTime SentOn { get; set; }
 
         public string StartingPoint { get; set; }
-        public string StartingLatitude { get; set; }
-        public string StartingLongtitude { get; set; }
 
         public string DestinationPoint { get; set; }
-        public string DestinationLatitude { get; set; }
-        public string DestinationLongtitude { get; set; }
 
         public decimal Price { get; set; }
+
+        public string TransportType { get; set; }
     }
 }

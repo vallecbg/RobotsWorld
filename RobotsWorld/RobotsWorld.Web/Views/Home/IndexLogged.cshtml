@@ -1,10 +1,12 @@
 ﻿@using System.Security.Claims
 @using RobotsWorld.Services.Contracts
+@using RobotsWorld.Web.HelperMethods
 @inject IRobotService RobotService
 @{
     ViewData["Title"] = "Home Page";
     var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
     var userRobots = RobotService.GetUserRobots(userId);
+    
 }
 
 <!-- start banner Area -->
@@ -22,40 +24,7 @@
 </section>
 <!-- End banner Area -->
 <!-- Start about-video Area -->
-<style>
-    /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-    #map {
-        height: 100%;
-    }
-    /* Optional: Makes the sample page fill the window. */
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-</style>
-<div id="map"></div>
-<script>
 
-    function initMap() {
-        var myLatLng = { lat: -25.363, lng: 131.044 };
-
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
-            center: myLatLng
-        });
-
-        var marker = new google.maps.Marker({
-            position: myLatLng,
-            map: map,
-            title: 'Hello World!'
-        });
-    }
-</script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js&callback=initMap">
-</script>
 <section class="products-area product-page section-gap">
     <div class="container">
         <div class="row d-flex justify-content-center">

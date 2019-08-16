@@ -43,5 +43,8 @@ namespace RobotsWorld.Services.Constants
 
         //Rights
         public const string UserHasNoRights = "You don't have rights to do this!";
+
+        //Keys
+        public const string GoogleMapsApiKey = "AIzaSyDDVS1cK3oavlECL5gTbvkdOAVYIupLd-A";
     }
 }

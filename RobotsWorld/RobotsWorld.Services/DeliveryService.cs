@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using GoogleMaps.LocationServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RobotsWorld.Data;
 using RobotsWorld.Models;
+using RobotsWorld.Services.Constants;
 using RobotsWorld.Services.Contracts;
 using RobotsWorld.ViewModels.InputModels.Deliveries;
+using RobotsWorld.ViewModels.OutputModels.Deliveries;
 
 namespace RobotsWorld.Services
 {
@@ -39,9 +42,11 @@ namespace RobotsWorld.Services
                 .ThenInclude(x => x.Parts)
                 .First(x => x.Id == model.RobotId);
 
+            robot.UserId = receiver.Id;
+            delivery.RobotId = robot.Id;
+
             sender.Robots.Remove(robot);
             receiver.Robots.Add(robot);
-            robot.UserId = receiver.Id;
 
             this.Context.Deliveries.Add(delivery);
             this.Context.Robots.Update(robot);
@@ -49,7 +54,20 @@ namespace RobotsWorld.Services
             this.Context.Users.Update(receiver);
             await this.Context.SaveChangesAsync();
 
-            return robot.Id;
+            return delivery.Id;
+        }
+
+        public DeliveryOutputModel GetDeliveryDetails(string id)
+        {
+            var delivery = this.Context.Deliveries
+                .Include(x => x.Robot)
+                .Include(x => x.Receiver)
+                .Include(x => x.Sender)
+                .First(x => x.Id == id);
+
+            var deliveryResult = Mapper.Map<DeliveryOutputModel>(delivery);
+
+            return deliveryResult;
         }
     }
 }

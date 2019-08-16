@@ -1,0 +1,134 @@
+﻿@using RobotsWorld.Services.Contracts
+@using RobotsWorld.Web.HelperMethods
+@model DeliveryOutputModel
+@inject IDeliveryService DeliveryService
+@inject CalculationMethods CalculationMethods
+@{
+    ViewData["Title"] = "Delivery Details";
+    var startingLocation = Model.StartingPoint;
+    var destinationLocation = Model.DestinationPoint;
+    var startingPointCoords = this.CalculationMethods.GetCoordinates(startingLocation);
+    var startingLatitude = startingPointCoords[0];
+    var startingLontitude = startingPointCoords[1];
+    var destinationPointCoords = this.CalculationMethods.GetCoordinates(destinationLocation);
+    var destinationLatitude = destinationPointCoords[0];
+    var destinationLontitude = destinationPointCoords[1];
+}
+<section class="banner-area relative" id="home">
+    <div class="container">
+        <main class="pt-100 pb-100">
+            <div class="container dark-grey-text  card justify-content-start">
+
+                <!--Grid row-->
+                <div class="row wow fadeIn">
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-md-12 mb-4">
+
+                        <!--Content-->
+                        <div class="p-4">
+
+                            <h1 class="lead font-weight-bold">@Model.StartingPoint <i class="fas fa-arrow-right"></i> @Model.DestinationPoint</h1>
+
+                            <p>
+                                Sender: @Model.SenderName <br />
+                                Receiver: @Model.ReceiverName <br />
+                                Sent On: @Model.SentOn <br />
+                                Robot: @Model.RobotName <br />
+                                Price: $@Model.Price
+                            </p>
+                            @* //TODO: I can make back to robot details button *@
+                        </div>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+        </main>
+        <!--Main layout-->
+    </div>
+    
+</section>
+<style>
+    #map-canvas {
+        height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<div id="map-canvas"></div>
+
+@section scripts{
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDVS1cK3oavlECL5gTbvkdOAVYIupLd-A"></script>
+    <script>
+        function initialize() {
+            var startingPosition = new google.maps.LatLng( @startingLatitude, @startingLontitude );
+            var destinationPosition = new google.maps.LatLng( @destinationLatitude, @destinationLontitude );
+
+            var map = new google.maps.Map(document.getElementById('map-canvas'), {
+                zoom: 8,
+                center: startingPosition,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var startingMarker = new google.maps.Marker({
+                position: startingPosition,
+                map: map,
+                title: 'Starting Point',
+                label: 'A'
+            });
+
+            var contentStringForStartingPosition = '<div id="content">' +
+                '<h3 class="pb-10">Starting Position</h3>' +
+                '<p>Route - @startingLocation - @destinationLocation</p>' +
+                '</div>';
+
+            var infowindowStarting = new google.maps.InfoWindow({
+                content: contentStringForStartingPosition
+            });
+            startingMarker.addListener('click', function() {
+                infowindowStarting.open(map, startingMarker);
+            });
+
+            var destinationMarker = new google.maps.Marker({
+                position: destinationPosition,
+                map: map,
+                title: 'Destination',
+                label: 'B'
+            });
+
+            var contentStringForDestinationPosition = '<div id="content">' +
+                '<h3 class="pb-10">Destination</h3>' +
+                '<p>Route - @startingLocation - @destinationLocation</p>' +
+                '</div>';
+
+            var infowindowDestination = new google.maps.InfoWindow({
+                content: contentStringForDestinationPosition
+            });
+            destinationMarker.addListener('click', function() {
+                infowindowDestination.open(map, destinationMarker);
+            });
+
+            var flightPlanCoordinates = [
+                {lat:  @startingLatitude, lng: @startingLontitude},
+                {lat: @destinationLatitude, lng: @destinationLontitude}
+            ];
+            var flightPath = new google.maps.Polyline({
+                path: flightPlanCoordinates,
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+            });
+            flightPath.setMap(map);
+        }
+
+        initialize();
+    </script>
+
+}
+

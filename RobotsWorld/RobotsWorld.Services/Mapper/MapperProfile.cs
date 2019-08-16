@@ -11,6 +11,7 @@ using RobotsWorld.ViewModels.InputModels.Parts;
 using RobotsWorld.ViewModels.InputModels.Robots;
 using RobotsWorld.ViewModels.InputModels.SubAssemblies;
 using RobotsWorld.ViewModels.InputModels.Users;
+using RobotsWorld.ViewModels.OutputModels.Deliveries;
 using RobotsWorld.ViewModels.OutputModels.Robots;
 using RobotsWorld.ViewModels.OutputModels.SubAssemblies;
 
@@ -56,6 +57,16 @@ namespace RobotsWorld.Services.Mapper
                 .ForMember(x => x.DestinationPoint, cfg => cfg.MapFrom(x => x.DestinationPoint))
                 .ForMember(x => x.Price, cfg => cfg.MapFrom(x => x.Price))
                 .ForAllOtherMembers(x => x.Ignore());
+
+            CreateMap<Delivery, DeliveryOutputModel>()
+                .ForMember(x => x.Id, cfg => cfg.MapFrom(x => x.Id))
+                .ForMember(x => x.DestinationPoint, cfg => cfg.MapFrom(x => x.DestinationPoint))
+                .ForMember(x => x.StartingPoint, cfg => cfg.MapFrom(x => x.StartingPoint))
+                .ForMember(x => x.Price, cfg => cfg.MapFrom(x => x.Price))
+                .ForMember(x => x.ReceiverName, cfg => cfg.MapFrom(x => x.Receiver.UserName))
+                .ForMember(x => x.SenderName, cfg => cfg.MapFrom(x => x.Sender.UserName))
+                .ForMember(x => x.RobotName, cfg => cfg.MapFrom(x => x.Robot.Name))
+                .ForMember(x => x.SentOn, cfg => cfg.MapFrom(x => x.SentOn));
         }
     }
 }
