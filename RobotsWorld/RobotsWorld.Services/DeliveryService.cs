@@ -27,27 +27,33 @@ namespace RobotsWorld.Services
             var delivery = Mapper.Map<Delivery>(model);
             var sender = this.Context.Users
                 .Include(x => x.Robots)
+                .Include(x => x.SentRobots)
+                .Include(x => x.ReceivedRobots)
                 .First(x => x.Id == model.SenderId);
             var receiver = this.Context.Users
                 .Include(x => x.Robots)
+                .Include(x => x.SentRobots)
+                .Include(x => x.ReceivedRobots)
                 .First(x => x.UserName == model.ReceiverUsername);
 
             delivery.ReceiverId = receiver.Id;
-            delivery.SenderId = sender.Id;
-            delivery.ReceiverId = receiver.Id;
-            delivery.SentOn = DateTime.UtcNow;
             
             var robot = this.Context.Robots
+                .Include(x => x.Deliveries)
                 .Include(x => x.Assembly)
                 .ThenInclude(x => x.SubAssemblies)
                 .ThenInclude(x => x.Parts)
                 .First(x => x.Id == model.RobotId);
-
+            //TODO: Continue from here!
             robot.UserId = receiver.Id;
-            delivery.RobotId = robot.Id;
+            //delivery.RobotId = robot.Id;
+            robot.Deliveries.Add(delivery);
 
             sender.Robots.Remove(robot);
             receiver.Robots.Add(robot);
+            
+            sender.SentRobots.Add(delivery);
+            receiver.ReceivedRobots.Add(delivery);
 
             this.Context.Deliveries.Update(delivery);
             this.Context.Robots.Update(robot);

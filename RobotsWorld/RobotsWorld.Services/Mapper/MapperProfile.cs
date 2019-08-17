@@ -57,6 +57,9 @@ namespace RobotsWorld.Services.Mapper
                 .ForMember(x => x.StartingPoint, cfg => cfg.MapFrom(x => x.StartingPoint))
                 .ForMember(x => x.DestinationPoint, cfg => cfg.MapFrom(x => x.DestinationPoint))
                 .ForMember(x => x.Price, cfg => cfg.MapFrom(x => x.Price))
+                .ForMember(x => x.RobotId, cfg => cfg.MapFrom(x => x.RobotId))
+                .ForMember(x => x.SenderId, cfg => cfg.MapFrom(x => x.SenderId))
+                .ForMember(x => x.SentOn, cfg => cfg.MapFrom(x => DateTime.UtcNow))
                 .ForAllOtherMembers(x => x.Ignore());
 
             CreateMap<Delivery, DeliveryOutputModel>()
