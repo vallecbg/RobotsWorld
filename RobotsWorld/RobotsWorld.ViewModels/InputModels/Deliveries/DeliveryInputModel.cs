@@ -29,5 +29,8 @@ namespace RobotsWorld.ViewModels.InputModels.Deliveries
         [Required]
         [Range(ViewModelsConstants.DeliveryMinPrice, ViewModelsConstants.DeliveryMaxPrice)]
         public decimal Price { get; set; }
+
+        [Required]
+        public string TransportTypeName { get; set; }
     }
 }

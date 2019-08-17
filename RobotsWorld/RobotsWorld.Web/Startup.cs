@@ -67,6 +67,7 @@ namespace RobotsWorld.Web
             services.AddScoped<IPartService, PartService>();
             services.AddScoped<IVendorService, VendorService>();
             services.AddScoped<IDeliveryService, DeliveryService>();
+            services.AddScoped<ITransportTypeService, TransportTypeService>();
             services.AddScoped<CalculationMethods>();
 
             //TODO: Add automapper here!

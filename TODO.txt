@@ -2,7 +2,7 @@
 
 
 *Major*
-- Add transport type to delivery
+- Test the validations of the shipping
 - See the newsletter subscribe
 - Add Sub Assembly Details
 - Center the image in robots details
@@ -11,6 +11,7 @@
 - Add api support
 
 *Minor*
+- I can add wallet where you can buy the robot and pay with money from the wallet
 - Facebook posting like wall
 - Add categories
 - Make cart where you can buy already made robots using tables

@@ -18,8 +18,12 @@ namespace RobotsWorld.Services
 {
     public class DeliveryService : BaseService, IDeliveryService
     {
-        public DeliveryService(UserManager<User> userManager, RobotsWorldContext context, IMapper mapper) : base(userManager, context, mapper)
+        private readonly ITransportTypeService transportTypeService;
+
+        public DeliveryService(UserManager<User> userManager, RobotsWorldContext context, IMapper mapper, ITransportTypeService transportTypeService)
+            : base(userManager, context, mapper)
         {
+            this.transportTypeService = transportTypeService;
         }
 
         public async Task<string> Create(DeliveryInputModel model)
@@ -37,6 +41,9 @@ namespace RobotsWorld.Services
                 .First(x => x.UserName == model.ReceiverUsername);
 
             delivery.ReceiverId = receiver.Id;
+
+            var transportType = this.transportTypeService.GetTransportTypeByName(model.TransportTypeName);
+            delivery.TransportTypeId = transportType.Id;
             
             var robot = this.Context.Robots
                 .Include(x => x.Deliveries)
@@ -44,9 +51,8 @@ namespace RobotsWorld.Services
                 .ThenInclude(x => x.SubAssemblies)
                 .ThenInclude(x => x.Parts)
                 .First(x => x.Id == model.RobotId);
-            //TODO: Continue from here!
+
             robot.UserId = receiver.Id;
-            //delivery.RobotId = robot.Id;
             robot.Deliveries.Add(delivery);
 
             sender.Robots.Remove(robot);
@@ -68,6 +74,7 @@ namespace RobotsWorld.Services
         {
             var delivery = this.Context.Deliveries
                 .Include(x => x.Robot)
+                .Include(x => x.TransportType)
                 .Include(x => x.Receiver)
                 .Include(x => x.Sender)
                 .First(x => x.Id == id);

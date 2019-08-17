@@ -70,7 +70,8 @@ namespace RobotsWorld.Services.Mapper
                 .ForMember(x => x.ReceiverName, cfg => cfg.MapFrom(x => x.Receiver.UserName))
                 .ForMember(x => x.SenderName, cfg => cfg.MapFrom(x => x.Sender.UserName))
                 .ForMember(x => x.RobotName, cfg => cfg.MapFrom(x => x.Robot.Name))
-                .ForMember(x => x.SentOn, cfg => cfg.MapFrom(x => x.SentOn));
+                .ForMember(x => x.SentOn, cfg => cfg.MapFrom(x => x.SentOn))
+                .ForMember(x => x.TransportTypeName, cfg => cfg.MapFrom(x => x.TransportType.Name));
 
             CreateMap<User, UserOutputModel>()
                 .ForMember(x => x.Id, cfg => cfg.MapFrom(x => x.Id))

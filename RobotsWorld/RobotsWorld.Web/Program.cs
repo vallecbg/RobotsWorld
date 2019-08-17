@@ -28,6 +28,7 @@ namespace RobotsWorld.Web
                 dbContext.Database.EnsureCreated();
 
                 SeedVendorsIfDbEmpty(serviceProvider).GetAwaiter().GetResult();
+                SeedTransportTypesIfDbEmpty(serviceProvider).GetAwaiter().GetResult();
                 //TODO: I can seed some information to the database
             }
 
@@ -65,6 +66,41 @@ namespace RobotsWorld.Web
             if (!areAnyVendors)
             {
                 dbContext.Vendors.AddRange(vendors);
+                await dbContext.SaveChangesAsync();
+            }
+        }
+
+        private static async Task SeedTransportTypesIfDbEmpty(IServiceProvider serviceProvider)
+        {
+            var dbContext = serviceProvider.GetRequiredService<RobotsWorldContext>();
+
+            //Make sure the database is created
+            dbContext.Database.EnsureCreated();
+
+            var transportTypes = new[]
+            {
+                new TransportType()
+                {
+                    Name = "Car"
+                },
+                new TransportType()
+                {
+                    Name = "Bus"
+                },
+                new TransportType()
+                {
+                    Name = "Plane"
+                },
+                new TransportType()
+                {
+                    Name = "Train"
+                },
+            };
+
+            var areAnyTransportTypes = dbContext.TransportTypes.Any();
+            if (!areAnyTransportTypes)
+            {
+                dbContext.TransportTypes.AddRange(transportTypes);
                 await dbContext.SaveChangesAsync();
             }
         }

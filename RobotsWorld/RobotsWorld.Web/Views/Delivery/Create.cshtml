@@ -1,10 +1,13 @@
 ﻿@using System.Security.Claims
+@using RobotsWorld.Services.Contracts
 @model DeliveryInputModel
+@inject ITransportTypeService TransportTypeService
 @{
     ViewData["Title"] = "Add Delivery";
     var error = ViewData[GlobalConstants.ModelError];
     var robotId = ViewData[GlobalConstants.RobotId].ToString();
     var senderId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var transportTypes = TransportTypeService.GetAllTransportTypes();
 }
 
 <section class="banner-area" id="home">
@@ -38,6 +41,18 @@
                         <input asp-for="Price" class="form-control" placeholder="Price..." />
                         <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
+                    <div class="form-group text-center">
+                        <label asp-for="TransportTypeName" class="text-center text-light"></label>
+                        <select asp-for="TransportTypeName" class="browser-default custom-select custom-select-lg mb-3">
+                            <option disabled selected>---Select Transport Type---</option>
+                            @foreach (var transportType in transportTypes)
+                            {
+                                <option>@transportType</option>
+                            }
+                        </select>
+
+                    </div>
+
                     <input type="hidden" value="@robotId" asp-for="RobotId" />
                     <input type="hidden" value="@senderId" asp-for="SenderId" />
 

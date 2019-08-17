@@ -16,6 +16,7 @@ namespace RobotsWorld.Data
         public DbSet<Part> Parts { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
+        public DbSet<TransportType> TransportTypes { get; set; }
 
 
         public RobotsWorldContext(DbContextOptions options)
@@ -32,6 +33,7 @@ namespace RobotsWorld.Data
             builder.ApplyConfiguration(new PartConfiguration());
             builder.ApplyConfiguration(new VendorConfiguration());
             builder.ApplyConfiguration(new DeliveryConfiguration());
+            builder.ApplyConfiguration(new TransportTypeConfiguration());
 
             base.OnModelCreating(builder);
         }

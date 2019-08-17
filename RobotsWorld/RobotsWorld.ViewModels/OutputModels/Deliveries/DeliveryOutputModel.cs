@@ -22,6 +22,6 @@ namespace RobotsWorld.ViewModels.OutputModels.Deliveries
 
         public decimal Price { get; set; }
 
-        //TODO: Add the transport type
+        public string TransportTypeName { get; set; }
     }
 }

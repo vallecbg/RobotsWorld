@@ -25,6 +25,7 @@ namespace RobotsWorld.Models
 
         public decimal Price { get; set; }
 
-        public string TransportType { get; set; }
+        public string TransportTypeId { get; set; }
+        public TransportType TransportType { get; set; }
     }
 }
