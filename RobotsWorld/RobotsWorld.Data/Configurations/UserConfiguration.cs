@@ -11,7 +11,6 @@ namespace RobotsWorld.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            
         }
     }
 }

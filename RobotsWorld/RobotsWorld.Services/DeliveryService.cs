@@ -34,6 +34,7 @@ namespace RobotsWorld.Services
 
             delivery.ReceiverId = receiver.Id;
             delivery.SenderId = sender.Id;
+            delivery.ReceiverId = receiver.Id;
             delivery.SentOn = DateTime.UtcNow;
             
             var robot = this.Context.Robots
@@ -48,7 +49,7 @@ namespace RobotsWorld.Services
             sender.Robots.Remove(robot);
             receiver.Robots.Add(robot);
 
-            this.Context.Deliveries.Add(delivery);
+            this.Context.Deliveries.Update(delivery);
             this.Context.Robots.Update(robot);
             this.Context.Users.Update(sender);
             this.Context.Users.Update(receiver);

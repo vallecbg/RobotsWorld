@@ -3,13 +3,13 @@
 
 *Major*
 - Add delivery details
+- Think about adding delivery for second time for the same robot
 - Add my deliveries menu
 - Add transport type to delivery
 - See the newsletter subscribe
 - Add Sub Assembly Details
 - Add User details
 - Center the image in robots details
-- Check if it's needed password protection
 - Add Error page
 - I can add table with website info like for contacts etc.
 - Maybe i can add createdon or something with datetime

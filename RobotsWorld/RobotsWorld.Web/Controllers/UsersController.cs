@@ -90,5 +90,16 @@ namespace RobotsWorld.Web.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Details(string id)
+        {
+            var user = this.userService.GetUserDetails(id);
+
+            return this.View(user);
+        }
+
+        
     }
 }

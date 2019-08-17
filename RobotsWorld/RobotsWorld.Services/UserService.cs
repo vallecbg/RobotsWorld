@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using RobotsWorld.Data;
 using RobotsWorld.Models;
 using RobotsWorld.Services.Constants;
 using RobotsWorld.Services.Contracts;
 using RobotsWorld.ViewModels.InputModels;
 using RobotsWorld.ViewModels.InputModels.Users;
+using RobotsWorld.ViewModels.OutputModels.Users;
 
 namespace RobotsWorld.Services
 {
@@ -56,6 +58,21 @@ namespace RobotsWorld.Services
             var result = this.signInManager.PasswordSignInAsync(user, password, true, false).Result;
 
             return result;
+        }
+
+        public UserOutputModel GetUserDetails(string id)
+        {
+            var user = this.Context.Users
+                .Include(x => x.Robots)
+                .Include(x => x.SentRobots)
+                .ThenInclude(x => x.Robot)
+                .Include(x => x.ReceivedRobots)
+                .ThenInclude(x => x.Robot)
+                .First(x => x.Id == id);
+
+            var userResult = this.Mapper.Map<UserOutputModel>(user);
+
+            return userResult;
         }
 
         public async void Logout()

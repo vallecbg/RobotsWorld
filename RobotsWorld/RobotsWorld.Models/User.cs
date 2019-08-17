@@ -10,10 +10,16 @@ namespace RobotsWorld.Models
         public User()
         {
             this.Robots = new HashSet<Robot>();
+            this.SentRobots = new HashSet<Delivery>();
+            this.ReceivedRobots = new HashSet<Delivery>();
         }
 
         public string Name { get; set; }
 
         public ICollection<Robot> Robots { get; set; }
+
+        public ICollection<Delivery> SentRobots { get; set; }
+
+        public ICollection<Delivery> ReceivedRobots { get; set; }
     }
 }

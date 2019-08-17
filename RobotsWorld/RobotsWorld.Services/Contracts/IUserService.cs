@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using RobotsWorld.ViewModels.InputModels;
 using RobotsWorld.ViewModels.InputModels.Users;
+using RobotsWorld.ViewModels.OutputModels.Users;
 
 namespace RobotsWorld.Services.Contracts
 {
@@ -13,6 +14,8 @@ namespace RobotsWorld.Services.Contracts
         Task<SignInResult> Register(RegisterInputModel registerModel);
 
         SignInResult Login(LoginInputModel loginModel);
+
+        UserOutputModel GetUserDetails(string id);
 
         void Logout();
     }

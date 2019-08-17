@@ -19,9 +19,17 @@ namespace RobotsWorld.Data.Configurations
 
             builder.Property(x => x.DestinationPoint).IsRequired();
 
-            builder.HasOne(x => x.Robot)
-                .WithMany(x => x.Deliveries)
-                .HasForeignKey(x => x.RobotId);
+            //builder.HasOne(x => x.Robot)
+            //    .WithMany(x => x.Deliveries)
+            //    .HasForeignKey(x => x.RobotId);
+
+            builder.HasOne(x => x.Receiver)
+                .WithMany(x => x.ReceivedRobots)
+                .HasForeignKey(x => x.ReceiverId);
+
+            builder.HasOne(x => x.Sender)
+                .WithMany(x => x.SentRobots)
+                .HasForeignKey(x => x.SenderId);
         }
     }
 }

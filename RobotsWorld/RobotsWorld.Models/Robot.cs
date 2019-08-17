@@ -7,7 +7,7 @@ namespace RobotsWorld.Models
     {
         public Robot()
         {
-            this.Deliveries = new HashSet<Delivery>();
+            //this.Deliveries = new HashSet<Delivery>();
         }
 
         public string Id { get; set; }
@@ -25,6 +25,7 @@ namespace RobotsWorld.Models
         public string UserId { get; set; }
         public User User { get; set; }
 
-        public ICollection<Delivery> Deliveries { get; set; }
+        //public string DeliveryId { get; set; }
+        public virtual Delivery Delivery { get; set; }
     }
 }

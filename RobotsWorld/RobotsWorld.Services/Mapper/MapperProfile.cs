@@ -14,6 +14,7 @@ using RobotsWorld.ViewModels.InputModels.Users;
 using RobotsWorld.ViewModels.OutputModels.Deliveries;
 using RobotsWorld.ViewModels.OutputModels.Robots;
 using RobotsWorld.ViewModels.OutputModels.SubAssemblies;
+using RobotsWorld.ViewModels.OutputModels.Users;
 
 namespace RobotsWorld.Services.Mapper
 {
@@ -67,6 +68,14 @@ namespace RobotsWorld.Services.Mapper
                 .ForMember(x => x.SenderName, cfg => cfg.MapFrom(x => x.Sender.UserName))
                 .ForMember(x => x.RobotName, cfg => cfg.MapFrom(x => x.Robot.Name))
                 .ForMember(x => x.SentOn, cfg => cfg.MapFrom(x => x.SentOn));
+
+            CreateMap<User, UserOutputModel>()
+                .ForMember(x => x.Id, cfg => cfg.MapFrom(x => x.Id))
+                .ForMember(x => x.Username, cfg => cfg.MapFrom(x => x.UserName))
+                .ForMember(x => x.Name, cfg => cfg.MapFrom(x => x.Name))
+                .ForMember(x => x.Robots, cfg => cfg.MapFrom(x => x.Robots))
+                .ForMember(x => x.ReceivedRobots, cfg => cfg.MapFrom(x => x.ReceivedRobots))
+                .ForMember(x => x.SentRobots, cfg => cfg.MapFrom(x => x.SentRobots));
         }
     }
 }

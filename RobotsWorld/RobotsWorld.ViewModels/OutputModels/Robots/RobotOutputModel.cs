@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 using RobotsWorld.Models;
+using RobotsWorld.ViewModels.OutputModels.Deliveries;
 using RobotsWorld.ViewModels.OutputModels.SubAssemblies;
 
 namespace RobotsWorld.ViewModels.OutputModels.Robots
 {
     public class RobotOutputModel
     {
+        public RobotOutputModel()
+        {
+            this.SubAssemblies = new HashSet<SubAssemblyOutputModel>();
+        }
+
         public string Id { get; set; }
 
         public string Name { get; set; }
@@ -29,5 +35,7 @@ namespace RobotsWorld.ViewModels.OutputModels.Robots
         public double TotalWeight { get; set; }
 
         public ICollection<SubAssemblyOutputModel> SubAssemblies { get; set; }
+
+        public DeliveryOutputModel Delivery { get; set; }
     }
 }

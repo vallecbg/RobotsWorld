@@ -1,15 +1,18 @@
+@using System.Security.Claims
 @using Microsoft.AspNetCore.Identity
 @using RobotsWorld.Models
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
-
+@{
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+}
 
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="menu-active"><a href="/Home/#myRobots">My Robots</a></li>
     <li class="menu-active"><a href="/Home/#createRobot">Create Robot</a></li>
     <li>
-        <a class="nav-link menu-active" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+        <a class="nav-link menu-active" asp-controller="Users" asp-action="Details" asp-route-id="@userId">Hello @User.Identity.Name!</a>
     </li>
     <li>
         <li>

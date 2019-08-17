@@ -1,0 +1,116 @@
+﻿@using RobotsWorld.Services.Contracts
+@model UserOutputModel
+@inject IUserService UserService
+@{
+    ViewData["Title"] = $"{Model.Username}'s Details";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    @ViewData["Title"]
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start about-video Area -->
+
+<section class="products-area product-page section-gap">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12 pb-40 header-text text-center">
+                <h1 class="pb-10">@Model.Username's Robots</h1>
+                <p>
+                    Who are in extremely love with eco friendly system.
+                </p>
+            </div>
+        </div>
+        <div id="myRobots">
+            @if (@Model.Robots.Any())
+            {
+                <div class="row">
+                    @foreach (var robot in Model.Robots)
+                    {
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single-product">
+                                <div class="thumb">
+                                    <img src="@robot.ImageUrl" class="img-fluid" style="max-height: 175px">
+                                </div>
+                                <div class="details">
+                                    <h4>@robot.Name</h4>
+                                    <p>
+                                        S/N: @robot.SerialNumber <br />
+                                        Axes: @robot.Axes
+                                    </p>
+                                    <a asp-controller="Robots" asp-action="Details" asp-route-id="@robot.Id" class="primary-btn text-uppercase">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="row d-flex justify-content-center">
+                    <h3 class="text-danger">This user doesn't have any robots!</h3>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="products-area product-page section-gap">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12 pb-40 header-text text-center">
+                <h1 class="pb-10">@Model.Username's Deliveries</h1>
+            </div>
+        </div>
+        @if (@Model.SentRobots.Count > 0 || Model.ReceivedRobots.Count > 0)
+        {
+            <div class="row">
+                @foreach (var delivery in Model.SentRobots)
+                {
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-product">
+                            <div class="details">
+                                <h4>@delivery.RobotName</h4>
+                                <p>
+                                    @delivery.StartingPoint <i class="fas fa-arrow-right"></i> @delivery.DestinationPoint
+                                </p>
+                                <a asp-controller="Delivery" asp-action="Details" asp-route-id="@delivery.Id" class="primary-btn text-uppercase">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @foreach (var delivery in Model.ReceivedRobots)
+                {
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-product">
+                            <div class="details">
+                                <h4>@delivery.RobotName</h4>
+                                <p>
+                                    @delivery.StartingPoint <i class="fas fa-arrow-right"></i> @delivery.DestinationPoint
+                                </p>
+                                <a asp-controller="Delivery" asp-action="Details" asp-route-id="@delivery.Id" class="primary-btn text-uppercase">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="row d-flex justify-content-center">
+                <h3 class="text-danger">This user doesn't have any deliveries!</h3>
+            </div>
+        }
+    </div>
+</section>
