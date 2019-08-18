@@ -36,7 +36,7 @@ namespace RobotsWorld.Web.Controllers
                 return this.View();
             }
 
-            var robotId = this.deliveryService.Create(model).Result;
+            var robotId = await this.deliveryService.Create(model);
 
             return RedirectToAction("Details", "Delivery", new{id = robotId});
         }

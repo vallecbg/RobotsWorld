@@ -18,5 +18,7 @@ namespace RobotsWorld.Services.Contracts
         UserOutputModel GetUserDetails(string id);
 
         void Logout();
+
+        string GetName(string id);
     }
 }

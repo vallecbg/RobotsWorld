@@ -79,5 +79,14 @@ namespace RobotsWorld.Services
         {
             await this.signInManager.SignOutAsync();
         }
+
+        public string GetName(string id)
+        {
+            var name = this.Context.Users
+                .Find(id)
+                .Name;
+
+            return name;
+        }
     }
 }

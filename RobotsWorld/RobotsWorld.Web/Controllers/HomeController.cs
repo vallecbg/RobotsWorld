@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using RobotsWorld.Models;
 
 namespace RobotsWorld.Web.Controllers
 {
@@ -25,8 +26,7 @@ namespace RobotsWorld.Web.Controllers
         public IActionResult Error()
         {
             //TODO: Search for errorviewmodel
-            //return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-            return View();
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

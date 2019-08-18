@@ -39,7 +39,7 @@ namespace RobotsWorld.Web.Controllers
                 return this.View();
             }
 
-            var partId = this.partService.Create(model).Result;
+            var partId = await this.partService.Create(model);
 
             var part = this.partService.GetPartById(partId);
 

@@ -7,8 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\css\.DS_Store" />
+    <None Include="wwwroot\css\bootstrap.map" />
+    <None Include="wwwroot\css\main.map" />
+    <None Include="wwwroot\img\.DS_Store" />
+    <None Include="wwwroot\img\blog\.DS_Store" />
     <None Include="wwwroot\js\.DS_Store" />
+    <None Include="wwwroot\js\all.js" />
+    <None Include="wwwroot\js\all.min.js" />
+    <None Include="wwwroot\js\brands.js" />
+    <None Include="wwwroot\js\brands.min.js" />
+    <None Include="wwwroot\js\conflict-detection.js" />
+    <None Include="wwwroot\js\conflict-detection.min.js" />
     <None Include="wwwroot\js\easing.min.js" />
+    <None Include="wwwroot\js\fontawesome.js" />
+    <None Include="wwwroot\js\fontawesome.min.js" />
     <None Include="wwwroot\js\hexagons.min.js" />
     <None Include="wwwroot\js\hoverIntent.js" />
     <None Include="wwwroot\js\jquery.ajaxchimp.min.js" />
@@ -20,9 +33,15 @@
     <None Include="wwwroot\js\main.js" />
     <None Include="wwwroot\js\owl.carousel.min.js" />
     <None Include="wwwroot\js\parallax.min.js" />
+    <None Include="wwwroot\js\regular.js" />
+    <None Include="wwwroot\js\regular.min.js" />
     <None Include="wwwroot\js\slick.js" />
+    <None Include="wwwroot\js\solid.js" />
+    <None Include="wwwroot\js\solid.min.js" />
     <None Include="wwwroot\js\superfish.js" />
     <None Include="wwwroot\js\superfish.min.js" />
+    <None Include="wwwroot\js\v4-shims.js" />
+    <None Include="wwwroot\js\v4-shims.min.js" />
     <None Include="wwwroot\js\vendor\bootstrap.min.js" />
     <None Include="wwwroot\js\vendor\jquery-2.2.4.min.js" />
     <None Include="wwwroot\js\waypoints.min.js" />
@@ -112,7 +131,11 @@
     <None Include="wwwroot\scss\bootstrap\_type.scss" />
     <None Include="wwwroot\scss\bootstrap\_utilities.scss" />
     <None Include="wwwroot\scss\bootstrap\_variables.scss" />
+    <None Include="wwwroot\scss\brands.scss" />
+    <None Include="wwwroot\scss\fontawesome.scss" />
     <None Include="wwwroot\scss\main.scss" />
+    <None Include="wwwroot\scss\regular.scss" />
+    <None Include="wwwroot\scss\solid.scss" />
     <None Include="wwwroot\scss\theme\.DS_Store" />
     <None Include="wwwroot\scss\theme\_elements.scss" />
     <None Include="wwwroot\scss\theme\_flexbox.scss" />
@@ -123,6 +146,20 @@
     <None Include="wwwroot\scss\theme\_pages.scss" />
     <None Include="wwwroot\scss\theme\_reset.scss" />
     <None Include="wwwroot\scss\theme\_variables.scss" />
+    <None Include="wwwroot\scss\v4-shims.scss" />
+    <None Include="wwwroot\scss\_animated.scss" />
+    <None Include="wwwroot\scss\_bordered-pulled.scss" />
+    <None Include="wwwroot\scss\_core.scss" />
+    <None Include="wwwroot\scss\_fixed-width.scss" />
+    <None Include="wwwroot\scss\_icons.scss" />
+    <None Include="wwwroot\scss\_larger.scss" />
+    <None Include="wwwroot\scss\_list.scss" />
+    <None Include="wwwroot\scss\_mixins.scss" />
+    <None Include="wwwroot\scss\_rotated-flipped.scss" />
+    <None Include="wwwroot\scss\_screen-reader.scss" />
+    <None Include="wwwroot\scss\_shims.scss" />
+    <None Include="wwwroot\scss\_stacked.scss" />
+    <None Include="wwwroot\scss\_variables.scss" />
     <None Include="wwwroot\sprites\brands.svg" />
     <None Include="wwwroot\sprites\regular.svg" />
     <None Include="wwwroot\sprites\solid.svg" />

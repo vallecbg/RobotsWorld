@@ -16,6 +16,7 @@ namespace RobotsWorld.Services.Constants
             public const string CreateSubAssemblyRoute = "/SubAssembly/Create/{assemblyId}";
             public const string CreatePartRoute = "/Part/Create/{subAssemblyId}";
             public const string CreateDeliveryRoute = "/Delivery/Create/{robotId}";
+            public const string Administration = "Administration";
         }
 
         //Ids
@@ -43,6 +44,7 @@ namespace RobotsWorld.Services.Constants
 
         //Rights
         public const string UserHasNoRights = "You don't have rights to do this!";
+        public const string Admin = "admin";
 
         //Keys
         public const string GoogleMapsApiKey = "AIzaSyDDVS1cK3oavlECL5gTbvkdOAVYIupLd-A";
