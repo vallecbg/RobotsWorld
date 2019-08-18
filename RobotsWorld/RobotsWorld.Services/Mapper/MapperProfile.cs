@@ -80,6 +80,11 @@ namespace RobotsWorld.Services.Mapper
                 .ForMember(x => x.Robots, cfg => cfg.MapFrom(x => x.Robots))
                 .ForMember(x => x.ReceivedRobots, cfg => cfg.MapFrom(x => x.ReceivedRobots))
                 .ForMember(x => x.SentRobots, cfg => cfg.MapFrom(x => x.SentRobots));
+
+            CreateMap<User, AdminUsersOutputModel>()
+                .ForMember(x => x.RobotsCount, cfg => cfg.MapFrom(x => x.Robots.Count))
+                .ForMember(x => x.SentRobotsCount, cfg => cfg.MapFrom(x => x.SentRobots.Count))
+                .ForMember(x => x.ReceivedRobotsCount, cfg => cfg.MapFrom(x => x.ReceivedRobots.Count));
         }
     }
 }

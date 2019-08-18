@@ -16,7 +16,7 @@ namespace RobotsWorld.Data.Configurations
             builder.HasMany(x => x.SubAssemblies)
                 .WithOne(x => x.Assembly)
                 .HasForeignKey(x => x.AssemblyId)
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.Cascade);
 
             //builder.HasOne(x => x.Robot)
             //    .WithOne(x => x.Assembly)

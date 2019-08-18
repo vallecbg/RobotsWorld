@@ -3,6 +3,7 @@
 
 *Major*
 - Test the validations of the shipping
+- Add vendor validation
 - See the newsletter subscribe
 - Add Sub Assembly Details
 - Center the image in robots details

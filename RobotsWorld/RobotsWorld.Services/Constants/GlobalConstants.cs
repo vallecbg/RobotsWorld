@@ -48,5 +48,8 @@ namespace RobotsWorld.Services.Constants
 
         //Keys
         public const string GoogleMapsApiKey = "AIzaSyDDVS1cK3oavlECL5gTbvkdOAVYIupLd-A";
+
+        //Errors
+        public const string ErrorOnDeleteUser = "An error happened during the deletion of this user!";
     }
 }

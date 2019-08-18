@@ -23,7 +23,8 @@ namespace RobotsWorld.Data.Configurations
 
             builder.HasMany(x => x.Parts)
                 .WithOne(x => x.SubAssembly)
-                .HasForeignKey(x => x.SubAssemblyId);
+                .HasForeignKey(x => x.SubAssemblyId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
