@@ -15,6 +15,7 @@ using RobotsWorld.ViewModels.OutputModels.Deliveries;
 using RobotsWorld.ViewModels.OutputModels.Robots;
 using RobotsWorld.ViewModels.OutputModels.SubAssemblies;
 using RobotsWorld.ViewModels.OutputModels.Users;
+using RobotsWorld.ViewModels.OutputModels.Vendors;
 
 namespace RobotsWorld.Services.Mapper
 {
@@ -92,6 +93,9 @@ namespace RobotsWorld.Services.Mapper
                 .ForMember(x => x.Role, cfg => cfg.Ignore())
                 .ForMember(x => x.NewRole, cfg => cfg.Ignore())
                 .ForMember(x => x.AppRoles, cfg => cfg.Ignore());
+
+            CreateMap<Vendor, VendorAdminOutputModel>()
+                .ForMember(x => x.PartsCount, cfg => cfg.MapFrom(x => x.Parts.Count));
         }
     }
 }

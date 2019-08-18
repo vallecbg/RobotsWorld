@@ -63,5 +63,44 @@ namespace RobotsWorld.Web.Areas.Administration.Controllers
 
             return RedirectToAction("Error", "Home");
         }
+
+        [HttpGet]
+        public IActionResult Vendors()
+        {
+            var vendorsModel = this.adminService.GetAllVendors();
+
+            return this.View(vendorsModel);
+        }
+
+        [HttpPost]
+        public IActionResult Vendors(string vendorName)
+        {
+            var vendorsModel = this.adminService.GetAllVendors();
+
+            if (string.IsNullOrEmpty(vendorName))
+            {
+                this.ViewData[GlobalConstants.Error] = GlobalConstants.NullName;
+                return this.View(vendorsModel);
+            }
+
+            if (vendorsModel.Any(x => x.Name == vendorName))
+            {
+                this.ViewData[GlobalConstants.Error] = GlobalConstants.VendorNameDuplicate;
+                return this.View(vendorsModel);
+            }
+
+            var result = this.adminService.AddVendor(vendorName);
+
+            if (result.Result != GlobalConstants.Success)
+            {
+                string error = string.Format(GlobalConstants.VendorNameDuplicate);
+                this.ViewData[GlobalConstants.Error] = error;
+                return this.View(vendorsModel);
+            }
+
+            return this.RedirectToAction("Vendors");
+        }
+
+
     }
 }

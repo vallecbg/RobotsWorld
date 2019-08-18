@@ -11,6 +11,7 @@ using RobotsWorld.Models;
 using RobotsWorld.Services.Constants;
 using RobotsWorld.Services.Contracts;
 using RobotsWorld.ViewModels.OutputModels.Users;
+using RobotsWorld.ViewModels.OutputModels.Vendors;
 
 namespace RobotsWorld.Services
 {
@@ -57,6 +58,34 @@ namespace RobotsWorld.Services
             {
                 throw new ArgumentException(GlobalConstants.ErrorOnDeleteUser);
             }
+        }
+
+        public IEnumerable<VendorAdminOutputModel> GetAllVendors()
+        {
+            var vendors = this.Context.Vendors
+                .Include(x => x.Parts)
+                .ToList();
+
+            var vendorsModel = this.Mapper.Map<IList<VendorAdminOutputModel>>(vendors);
+
+            return vendorsModel;
+        }
+
+        public async Task<string> AddVendor(string vendorName)
+        {
+            var vendorExists = this.Context.Vendors.Any(x => x.Name == vendorName);
+
+            if (!vendorExists)
+            {
+                var vendor = new Vendor{Name = vendorName};
+
+                this.Context.Vendors.Add(vendor);
+                await this.Context.SaveChangesAsync();
+
+                return GlobalConstants.Success;
+            }
+
+            return GlobalConstants.Failed;
         }
 
         private async Task DeleteUsersEntities(string userId)

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<VendorAdminOutputModel>
+@{
+    ViewData["Title"] = "Current Vendors";
+}
+
+<div class="container d-flex mt-5 border border-dark">
+
+    <div class="row col-md-4 d-flex offset-4 btn-group-vertical justify-content-center border-dark" role="group" style="overflow-y: auto;">
+        <p class="mx-auto font-weight-bold">Current Vendors</p>
+        @foreach (var vendor in Model)
+        {
+            <div class="btn-group">
+                
+                <button type="button" class="btn btn-secondary btn-block" disabled="disabled">@vendor.Name | Created Parts: @vendor.PartsCount<a asp-action="DeleteGenre" asp-controller="Admins" asp-area="Administration" asp-route-genreName="@vendor.Name"> <button class="btn btn-danger" style="border-radius: 0 !important;"><i class="fas fa-trash"></i></button></a></button>
+            </div>
+
+
+        }
+
+        <form class="form-inline mt-5" asp-area="Administration" asp-controller="Admins" asp-action="Vendors" method="post">
+            <p class="card-header text-capitalize mx-auto font-weight-bold">Add New Vendor</p>
+            <div class="form-group mx-auto mb-2">
+
+                <input type="text" class="form-control" id="Name" name="VendorName">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Add Genre</button>
+            @if (this.ViewData.ContainsKey(GlobalConstants.Error))
+            {
+                <p class="text-danger">@this.ViewData[GlobalConstants.Error]</p>
+            }
+        </form>
+    </div>
+</div>

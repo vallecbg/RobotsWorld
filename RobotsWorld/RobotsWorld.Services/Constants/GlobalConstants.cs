@@ -9,6 +9,9 @@ namespace RobotsWorld.Services.Constants
         //Errors
         public const string ModelError = "LoginError";
         public const string Error = "Error";
+        public const string ErrorOnDeleteUser = "An error happened during the deletion of this user!";
+        public const string NullName = "The name cannot be null or empty!";
+        public const string VendorNameDuplicate = "This vendor name already exists in the database!";
 
         //Routes
         public class RouteConstants
@@ -28,13 +31,16 @@ namespace RobotsWorld.Services.Constants
         public const string RegisterError = "There's already an registered user with this username or name!";
         public const string LoginError = "Wrong username or password!";
 
+        //Roles
         public const string DefaultRole = "user";
         public const string AdminRole = "admin";
+        public const string Admin = "admin";
 
-        //Cloudinary
+        //Keys and apis
         public const string CloudinaryCloudName = "vallec";
         public const string CloudinaryApiKey = "148382891263925";
         public const string CloudinaryApiSecret = "GDijvH1mRWflHJa0J6oerHATqqI";
+        public const string GoogleMapsApiKey = "AIzaSyDDVS1cK3oavlECL5gTbvkdOAVYIupLd-A";
 
         //Image
         public const string NoImageAvailableUrl =
@@ -44,12 +50,10 @@ namespace RobotsWorld.Services.Constants
 
         //Rights
         public const string UserHasNoRights = "You don't have rights to do this!";
-        public const string Admin = "admin";
+        
 
-        //Keys
-        public const string GoogleMapsApiKey = "AIzaSyDDVS1cK3oavlECL5gTbvkdOAVYIupLd-A";
-
-        //Errors
-        public const string ErrorOnDeleteUser = "An error happened during the deletion of this user!";
+        //Acts
+        public const string Success = "Success";
+        public const string Failed = "Failed the task";
     }
 }
