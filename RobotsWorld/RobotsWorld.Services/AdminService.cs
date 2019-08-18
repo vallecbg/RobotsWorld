@@ -16,8 +16,11 @@ namespace RobotsWorld.Services
 {
     public class AdminService : BaseService, IAdminService
     {
-        public AdminService(UserManager<User> userManager, RobotsWorldContext context, IMapper mapper) : base(userManager, context, mapper)
+        private readonly RoleManager<IdentityRole> roleManager;
+
+        public AdminService(UserManager<User> userManager, RobotsWorldContext context, IMapper mapper, RoleManager<IdentityRole> roleManager) : base(userManager, context, mapper)
         {
+            this.roleManager = roleManager;
         }
 
         public async Task<IEnumerable<AdminUsersOutputModel>> GetAllUsers()
@@ -69,6 +72,39 @@ namespace RobotsWorld.Services
             this.Context.Robots.RemoveRange(robots);
 
             await this.Context.SaveChangesAsync();
+        }
+
+        public async Task<IdentityResult> ChangeRole(ChangingRoleModel model)
+        {
+            string newRole = model.NewRole;
+            var user = this.UserManager.FindByIdAsync(model.Id).Result;
+            var currentRole = await this.UserManager.GetRolesAsync(user);
+            IdentityResult result = null;
+
+            result = await this.UserManager.RemoveFromRoleAsync(user, currentRole.First());
+            result = await this.UserManager.AddToRoleAsync(user, newRole);
+
+            return result;
+        }
+
+        public ChangingRoleModel AdminModifyRole(string Id)
+        {
+            var user = this.UserManager.FindByIdAsync(Id).Result;
+
+            var model = this.Mapper.Map<ChangingRoleModel>(user);
+
+            model.AppRoles = this.AppRoles();
+
+            model.Role = this.UserManager.GetRolesAsync(user).Result.FirstOrDefault() ?? GlobalConstants.DefaultRole;
+
+            return model;
+        }
+
+        private ICollection<string> AppRoles()
+        {
+            var result = this.roleManager.Roles.Select(x => x.Name).ToArray();
+
+            return result;
         }
     }
 }

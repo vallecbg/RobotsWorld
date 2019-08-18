@@ -85,6 +85,13 @@ namespace RobotsWorld.Services.Mapper
                 .ForMember(x => x.RobotsCount, cfg => cfg.MapFrom(x => x.Robots.Count))
                 .ForMember(x => x.SentRobotsCount, cfg => cfg.MapFrom(x => x.SentRobots.Count))
                 .ForMember(x => x.ReceivedRobotsCount, cfg => cfg.MapFrom(x => x.ReceivedRobots.Count));
+
+            CreateMap<User, ChangingRoleModel>()
+                .ForMember(x => x.Id, cfg => cfg.MapFrom(x => x.Id))
+                .ForMember(x => x.Name, cfg => cfg.MapFrom(x => x.Name))
+                .ForMember(x => x.Role, cfg => cfg.Ignore())
+                .ForMember(x => x.NewRole, cfg => cfg.Ignore())
+                .ForMember(x => x.AppRoles, cfg => cfg.Ignore());
         }
     }
 }

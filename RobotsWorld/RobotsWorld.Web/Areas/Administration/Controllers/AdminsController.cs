@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RobotsWorld.Services.Constants;
 using RobotsWorld.Services.Contracts;
+using RobotsWorld.ViewModels.OutputModels.Users;
 
 namespace RobotsWorld.Web.Areas.Administration.Controllers
 {
@@ -40,6 +42,26 @@ namespace RobotsWorld.Web.Areas.Administration.Controllers
             await this.adminService.DeleteUser(id);
 
             return RedirectToAction("Users");
+        }
+
+        [HttpGet]
+        public IActionResult EditRole(string id)
+        {
+            var model = this.adminService.AdminModifyRole(id);
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditRole(ChangingRoleModel model)
+        {
+            var result = this.adminService.ChangeRole(model).Result;
+
+            if (result == IdentityResult.Success)
+            {
+                return RedirectToAction("Users");
+            }
+
+            return RedirectToAction("Error", "Home");
         }
     }
 }
