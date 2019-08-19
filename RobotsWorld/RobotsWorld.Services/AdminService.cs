@@ -10,6 +10,8 @@ using RobotsWorld.Data;
 using RobotsWorld.Models;
 using RobotsWorld.Services.Constants;
 using RobotsWorld.Services.Contracts;
+using RobotsWorld.ViewModels.OutputModels.Robots;
+using RobotsWorld.ViewModels.OutputModels.TransportTypes;
 using RobotsWorld.ViewModels.OutputModels.Users;
 using RobotsWorld.ViewModels.OutputModels.Vendors;
 
@@ -107,6 +109,21 @@ namespace RobotsWorld.Services
             await this.Context.SaveChangesAsync();
         }
 
+        public IEnumerable<RobotAdminOutputModel> GetAllRobots()
+        {
+            var robots = this.Context.Robots
+                .Include(x => x.Assembly)
+                .ThenInclude(x => x.SubAssemblies)
+                .ThenInclude(x => x.Parts)
+                .Include(x => x.User)
+                .Include(x => x.Deliveries)
+                .ToList();
+
+            var robotsModel = this.Mapper.Map<IList<RobotAdminOutputModel>>(robots);
+
+            return robotsModel;
+        }
+
         private async Task DeleteUsersEntities(string userId)
         {
             var robots = this.Context.Robots
@@ -153,6 +170,53 @@ namespace RobotsWorld.Services
             var result = this.roleManager.Roles.Select(x => x.Name).ToArray();
 
             return result;
+        }
+
+        public IEnumerable<TransportTypeOutputModel> GetAllTransportTypes()
+        {
+            var transportTypes = this.Context.TransportTypes
+                .Include(x => x.Deliveries)
+                .ToList();
+
+            var transportTypesModel = this.Mapper.Map<IList<TransportTypeOutputModel>>(transportTypes);
+
+            return transportTypesModel;
+        }
+
+        public async Task<string> AddTransportType(string transportTypeName)
+        {
+            var transportExists = this.Context.TransportTypes.Any(x => x.Name == transportTypeName);
+
+            if (!transportExists)
+            {
+                var vendor = new TransportType { Name = transportTypeName };
+
+                this.Context.TransportTypes.Add(vendor);
+                await this.Context.SaveChangesAsync();
+
+                return GlobalConstants.Success;
+            }
+
+            return GlobalConstants.Failed;
+        }
+
+        public async Task DeleteTransportType(string transportId, string username)
+        {
+            var transport = this.Context.TransportTypes
+                .Include(x => x.Deliveries)
+                .FirstOrDefault(x => x.Id == transportId);
+
+            var user = await this.UserManager.FindByNameAsync(username);
+            var roles = await this.UserManager.GetRolesAsync(user);
+
+            bool hasRights = roles.Any(x => x == GlobalConstants.Admin);
+            if (!hasRights)
+            {
+                throw new OperationCanceledException(GlobalConstants.UserHasNoRights);
+            }
+
+            this.Context.TransportTypes.Remove(transport ?? throw new InvalidOperationException(GlobalConstants.RecordDoesntExist));
+            await this.Context.SaveChangesAsync();
         }
     }
 }

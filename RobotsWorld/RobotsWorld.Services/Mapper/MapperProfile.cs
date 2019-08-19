@@ -14,6 +14,7 @@ using RobotsWorld.ViewModels.InputModels.Users;
 using RobotsWorld.ViewModels.OutputModels.Deliveries;
 using RobotsWorld.ViewModels.OutputModels.Robots;
 using RobotsWorld.ViewModels.OutputModels.SubAssemblies;
+using RobotsWorld.ViewModels.OutputModels.TransportTypes;
 using RobotsWorld.ViewModels.OutputModels.Users;
 using RobotsWorld.ViewModels.OutputModels.Vendors;
 
@@ -96,6 +97,17 @@ namespace RobotsWorld.Services.Mapper
 
             CreateMap<Vendor, VendorAdminOutputModel>()
                 .ForMember(x => x.PartsCount, cfg => cfg.MapFrom(x => x.Parts.Count));
+
+            CreateMap<Robot, RobotAdminOutputModel>()
+                .ForMember(x => x.SubAssembliesCount, cfg => cfg.MapFrom(x => x.Assembly.SubAssemblies.Count))
+                .ForMember(x => x.DeliveriesCount, cfg => cfg.MapFrom(x => x.Deliveries.Count))
+                .ForMember(x => x.User, cfg => cfg.MapFrom(x => x.User.UserName))
+                .ForMember(x => x.TotalPrice, cfg => cfg.MapFrom(x => x.Assembly.TotalPrice))
+                .ForMember(x => x.TotalWeight, cfg => cfg.MapFrom(x => x.Assembly.TotalWeight));
+
+            CreateMap<TransportType, TransportTypeOutputModel>()
+                .ForMember(x => x.DeliveriesCount, cfg => cfg.MapFrom(x => x.Deliveries.Count))
+                .ForMember(x => x.Name, cfg => cfg.MapFrom(x => x.Name));
         }
     }
 }

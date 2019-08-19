@@ -16,10 +16,12 @@ namespace RobotsWorld.Web.Areas.Administration.Controllers
     public class AdminsController : Controller
     {
         private readonly IAdminService adminService;
+        private readonly IRobotService robotService;
 
-        public AdminsController(IAdminService adminService)
+        public AdminsController(IAdminService adminService, IRobotService robotService)
         {
             this.adminService = adminService;
+            this.robotService = robotService;
         }
 
         [HttpGet]
@@ -116,6 +118,69 @@ namespace RobotsWorld.Web.Areas.Administration.Controllers
             return RedirectToAction("Vendors", "Admins");
         }
 
+        [HttpGet]
+        public IActionResult Robots()
+        {
+            var robotsModel = this.adminService.GetAllRobots();
 
+            return this.View(robotsModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteRobot(string id)
+        {
+            var username = this.User.Identity.Name;
+
+            this.robotService.DeleteRobot(id, username);
+
+            return RedirectToAction("Robots");
+        }
+
+        [HttpGet]
+        public IActionResult TransportTypes()
+        {
+            var transportTypesModel = this.adminService.GetAllTransportTypes();
+
+            return this.View(transportTypesModel);
+        }
+
+        [HttpPost]
+        public IActionResult TransportTypes(string transportTypeName)
+        {
+            var transportTypeModel = this.adminService.GetAllTransportTypes();
+
+            if (string.IsNullOrEmpty(transportTypeName))
+            {
+                this.ViewData[GlobalConstants.Error] = GlobalConstants.NullName;
+                return this.View(transportTypeModel);
+            }
+
+            if (transportTypeModel.Any(x => x.Name == transportTypeName))
+            {
+                this.ViewData[GlobalConstants.Error] = GlobalConstants.TransportTypeNameDuplicate;
+                return this.View(transportTypeModel);
+            }
+
+            var result = this.adminService.AddTransportType(transportTypeName);
+
+            if (result.Result != GlobalConstants.Success)
+            {
+                string error = string.Format(GlobalConstants.TransportTypeNameDuplicate);
+                this.ViewData[GlobalConstants.Error] = error;
+                return this.View(transportTypeModel);
+            }
+
+            return this.RedirectToAction("TransportTypes");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteTransportType(string id)
+        {
+            var username = this.User.Identity.Name;
+
+            await this.adminService.DeleteTransportType(id, username);
+
+            return RedirectToAction("TransportTypes");
+        }
     }
 }

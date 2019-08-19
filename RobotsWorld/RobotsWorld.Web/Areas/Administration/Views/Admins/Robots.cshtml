@@ -1,0 +1,62 @@
+﻿@using RobotsWorld.Services.Contracts
+@model IEnumerable<RobotAdminOutputModel>
+@inject IAdminService AdminService
+@{
+    ViewData["Title"] = "Robots";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">All Robots</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>SerialNumber</th>
+                        <th>Axes</th>
+                        <th>User</th>
+                        <th>Total Price</th>
+                        <th>Total Weight</th>
+                        <th>Sub Assemblies Count</th>
+                        <th>Deliveries Count</th>
+                        <th class="sorting_asc_disabled sorting_desc_disabled"></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>SerialNumber</th>
+                    <th>Axes</th>
+                    <th>User</th>
+                    <th>Total Price</th>
+                    <th>Total Weight</th>
+                    <th>Sub Assemblies Count</th>
+                    <th>Deliveries Count</th>
+                    <th class="sorting_asc_disabled sorting_desc_disabled"></th>
+                </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var robot in Model)
+                    {
+                        <tr>
+                            <td>@robot.Name</td>
+                            <td>@robot.SerialNumber</td>
+                            <td>@robot.Axes</td>
+                            <td>@robot.User</td>
+                            <td>$@robot.TotalPrice</td>
+                            <td>@robot.TotalWeight kg</td>
+                            <td>@robot.SubAssembliesCount</td>
+                            <td>@robot.DeliveriesCount</td>
+                            <td>
+                                <a asp-action="DeleteRobot" asp-controller="Admins" asp-area="Administration" asp-route-id="@robot.Id" class="btn btn-info">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

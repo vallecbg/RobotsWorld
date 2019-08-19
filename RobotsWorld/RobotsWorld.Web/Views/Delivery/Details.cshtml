@@ -13,6 +13,7 @@
     var destinationPointCoords = this.CalculationMethods.GetCoordinates(destinationLocation);
     var destinationLatitude = destinationPointCoords[0];
     var destinationLontitude = destinationPointCoords[1];
+    var transportType = Model.TransportTypeName ?? "unknown";
 }
 <section class="banner-area relative" id="home">
     <div class="container">
@@ -36,7 +37,7 @@
                                 Sent On: @Model.SentOn <br />
                                 Robot: @Model.RobotName <br />
                                 Price: $@Model.Price <br />
-                                Transport Type: @Model.TransportTypeName
+                                Transport Type: @transportType
                             </p>
                             @* //TODO: I can make back to robot details button *@
                         </div>
@@ -64,7 +65,7 @@
 <div id="map-canvas"></div>
 
 @section scripts{
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDVS1cK3oavlECL5gTbvkdOAVYIupLd-A"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=@GlobalConstants.GoogleMapsApiKey"></script>
     <script>
         function initialize() {
             var startingPosition = new google.maps.LatLng( @startingLatitude, @startingLontitude );
