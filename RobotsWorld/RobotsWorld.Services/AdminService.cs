@@ -218,5 +218,93 @@ namespace RobotsWorld.Services
             this.Context.TransportTypes.Remove(transport ?? throw new InvalidOperationException(GlobalConstants.RecordDoesntExist));
             await this.Context.SaveChangesAsync();
         }
+
+        public int GetUsersCount()
+        {
+            var usersCount = this.Context.Users.Count();
+
+            return usersCount;
+        }
+
+        public int GetRobotsCount()
+        {
+            var robotsCount = this.Context.Robots.Count();
+
+            return robotsCount;
+        }
+
+        public int GetVendorsCount()
+        {
+            var vendorsCount = this.Context.Vendors.Count();
+
+            return vendorsCount;
+        }
+
+        public int GetTransportTypesCount()
+        {
+            var transportTypesCount = this.Context.TransportTypes.Count();
+
+            return transportTypesCount;
+        }
+
+        public Dictionary<string, int> GetDeliveriesForAWeek()
+        {
+            DateTime[] last7Days = Enumerable.Range(0, 7)
+                .Select(i => DateTime.Now.Date.AddDays(-i))
+                .ToArray();
+
+
+            var deliveries = this.Context.Deliveries
+                .Where(x => last7Days.Any(c => c.Day == x.SentOn.Day && c.Month == x.SentOn.Month));
+            var deliveriesReport = LoadCommentsReportWithDates();
+            foreach (var delivery in deliveries)
+            {
+                var currentDate = delivery.SentOn.ToString("dddd");
+                if (deliveriesReport.ContainsKey(currentDate))
+                {
+                    deliveriesReport[currentDate]++;
+                }
+            }
+
+            return deliveriesReport;
+        }
+
+        public Dictionary<string, int> GetTop3RobotsWithMostDeliveries()
+        {
+            var robots = this.Context.Robots
+                .Include(x => x.Deliveries)
+                .Include(x => x.User)
+                .OrderByDescending(x => x.Deliveries.Count)
+                .Take(3)
+                .ToList();
+            
+            var robotsModel = new Dictionary<string, int>();
+            foreach (var robot in robots)
+            {
+                if (!robotsModel.ContainsKey(robot.Name))
+                {
+                    robotsModel.Add(robot.Name, 0);
+                }
+
+                robotsModel[robot.Name] += robot.Deliveries.Count;
+            }
+
+            return robotsModel;
+        }
+
+        private Dictionary<string, int> LoadCommentsReportWithDates()
+        {
+            var commentsReport = new Dictionary<string, int>();
+
+            commentsReport.Add("Monday", 0);
+            commentsReport.Add("Tuesday", 0);
+            commentsReport.Add("Wednesday", 0);
+            commentsReport.Add("Thursday", 0);
+            commentsReport.Add("Friday", 0);
+            commentsReport.Add("Saturday", 0);
+            commentsReport.Add("Sunday", 0);
+
+            return commentsReport;
+        }
     }
 }

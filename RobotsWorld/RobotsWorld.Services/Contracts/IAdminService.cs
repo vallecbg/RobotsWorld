@@ -33,5 +33,17 @@ namespace RobotsWorld.Services.Contracts
         Task<string> AddTransportType(string transportTypeName);
 
         Task DeleteTransportType(string transportId, string username);
+
+        int GetUsersCount();
+
+        int GetRobotsCount();
+
+        int GetVendorsCount();
+
+        int GetTransportTypesCount();
+
+        Dictionary<string, int> GetDeliveriesForAWeek();
+
+        Dictionary<string, int> GetTop3RobotsWithMostDeliveries();
     }
 }

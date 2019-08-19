@@ -1,5 +1,19 @@
-﻿@{
+﻿@using RobotsWorld.Services.Contracts
+@inject IAdminService AdminService
+@{
     ViewData["Title"] = "Index";
+    var usersCount = AdminService.GetUsersCount();
+    var vendorsCount = AdminService.GetVendorsCount();
+    var robotsCount = AdminService.GetRobotsCount();
+    var transportTypesCount = AdminService.GetTransportTypesCount();
+
+    var thisWeekDeliveries = AdminService.GetDeliveriesForAWeek();
+    var daysInWeek = thisWeekDeliveries.Keys;
+    var sentDays = thisWeekDeliveries.Values;
+
+    var topRobots = AdminService.GetTop3RobotsWithMostDeliveries();
+    var robotNames = topRobots.Keys.ToList();
+    var robotValues = topRobots.Values.ToList();
 }
 @* This includes the statistics *@
 <script type="text/javascript" src="/vendor/chart.js/Chart.js"></script>
@@ -19,7 +33,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Registered Users</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@usersCount</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -35,11 +49,11 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Books</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Robots</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@robotsCount</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-book fa-2x text-gray-300"></i>
+                        <i class="fas fa-robot fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -52,15 +66,15 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Genres</div>
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Vendors</div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"></div>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@vendorsCount</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -73,11 +87,11 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total Announcements</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total Transport Types</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@transportTypesCount</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-bullhorn fa-2x text-gray-300"></i>
+                        <i class="fas fa-dolly fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -94,7 +108,7 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Total Comments This Week</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Total Deliveries This Week</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -110,32 +124,35 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Top 3 Books with Most Chapters</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Top 3 Robots with Most Deliveries</h6>
             </div>
             <!-- Card Body -->
-            <div class="card-body">
-                <div class="chart-pie pt-4 pb-2">
-                    <canvas id="myPieChart"></canvas>
+            
+                <div class="card-body">
+                    <div class="chart-pie pt-4 pb-2">
+                        <canvas id="myPieChart"></canvas>
+                    </div>
+                    @if (topRobots.Count == 3)
+                    {
+                        <div class="mt-4 text-center small">
+                            <span class="mr-2">
+                                <i class="fas fa-circle text-primary">@robotNames[0]</i>
+                            </span>
+                            <span class="mr-2">
+                                <i class="fas fa-circle text-success">@robotNames[1]</i>
+                            </span>
+                            <span class="mr-2">
+                                <i class="fas fa-circle text-info">@robotNames[2]</i>
+                            </span>
+                        </div>
+                    }
                 </div>
-                <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                        <i class="fas fa-circle text-primary"></i> 
-                    </span>
-                    <span class="mr-2">
-                        <i class="fas fa-circle text-success"></i> 
-                    </span>
-                    <span class="mr-2">
-                        <i class="fas fa-circle text-info"></i> 
-                    </span>
-                </div>
-            </div>
         </div>
     </div>
 </div>
 
 
-@*<script type="text/javascript">
-
+<script type="text/javascript">
     // Set new default font family and font color to mimic Bootstrap's default styling
     Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
     Chart.defaults.global.defaultFontColor = '#858796';
@@ -172,7 +189,7 @@
         data: {
             labels: @Html.Raw(Json.Serialize(@daysInWeek)),
             datasets: [{
-                label: "Comments",
+                label: "Deliveries",
                 lineTension: 0.3,
                 backgroundColor: "rgba(78, 115, 223, 0.05)",
                 borderColor: "rgba(78, 115, 223, 1)",
@@ -184,7 +201,7 @@
                 pointHoverBorderColor: "rgba(78, 115, 223, 1)",
                 pointHitRadius: 10,
                 pointBorderWidth: 2,
-                data: @Html.Raw(Json.Serialize(@commentsDaysCount)),
+                data: @Html.Raw(Json.Serialize(@sentDays)),
             }],
         },
         options: {
@@ -265,9 +282,9 @@
     var myPieChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: @Html.Raw(Json.Serialize(@top3BooksTitles)),
+            labels: @Html.Raw(Json.Serialize(@robotNames)),
             datasets: [{
-                data: @Html.Raw(Json.Serialize(@top3BooksChapters)),
+                data: @Html.Raw(Json.Serialize(@robotValues)),
                 backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
                 hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
                 hoverBorderColor: "rgba(234, 236, 244, 1)",
@@ -292,4 +309,4 @@
         },
     });
 
-</script>*@
+</script>
