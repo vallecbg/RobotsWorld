@@ -3,6 +3,7 @@
 
 *Major*
 - Test the validations of the shipping
+- Increase the total price of assembly when ship
 - Add vendor validation
 - See the newsletter subscribe
 - Add Sub Assembly Details

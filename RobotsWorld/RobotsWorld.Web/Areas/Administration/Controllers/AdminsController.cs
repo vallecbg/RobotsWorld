@@ -101,6 +101,21 @@ namespace RobotsWorld.Web.Areas.Administration.Controllers
             return this.RedirectToAction("Vendors");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> DeleteVendor(string id)
+        {
+            if (!this.User.IsInRole(GlobalConstants.Admin))
+            {
+                return RedirectToAction("Error", "Home", "");
+            }
+
+            var username = this.User.Identity.Name;
+
+            await this.adminService.DeleteVendor(id, username);
+
+            return RedirectToAction("Vendors", "Admins");
+        }
+
 
     }
 }

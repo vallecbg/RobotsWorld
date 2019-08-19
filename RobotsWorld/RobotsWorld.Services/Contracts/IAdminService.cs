@@ -21,5 +21,7 @@ namespace RobotsWorld.Services.Contracts
         IEnumerable<VendorAdminOutputModel> GetAllVendors();
 
         Task<string> AddVendor(string vendorName);
+
+        Task DeleteVendor(string vendorId, string username);
     }
 }

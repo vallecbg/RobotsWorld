@@ -12,6 +12,7 @@ namespace RobotsWorld.Services.Constants
         public const string ErrorOnDeleteUser = "An error happened during the deletion of this user!";
         public const string NullName = "The name cannot be null or empty!";
         public const string VendorNameDuplicate = "This vendor name already exists in the database!";
+        public const string RecordDoesntExist = "This record doesn't exist in the database!";
 
         //Routes
         public class RouteConstants

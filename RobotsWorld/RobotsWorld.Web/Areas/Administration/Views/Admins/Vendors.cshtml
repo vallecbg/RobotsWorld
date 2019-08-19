@@ -11,7 +11,7 @@
         {
             <div class="btn-group">
                 
-                <button type="button" class="btn btn-secondary btn-block" disabled="disabled">@vendor.Name | Created Parts: @vendor.PartsCount<a asp-action="DeleteGenre" asp-controller="Admins" asp-area="Administration" asp-route-genreName="@vendor.Name"> <button class="btn btn-danger" style="border-radius: 0 !important;"><i class="fas fa-trash"></i></button></a></button>
+                <button type="button" class="btn btn-secondary btn-block" disabled="disabled">@vendor.Name | Created Parts: @vendor.PartsCount<a asp-action="DeleteVendor" asp-controller="Admins" asp-area="Administration" asp-route-id="@vendor.Id"> <button class="btn btn-danger" style="border-radius: 0 !important;"><i class="fas fa-trash"></i></button></a></button>
             </div>
 
 
@@ -23,7 +23,7 @@
 
                 <input type="text" class="form-control" id="Name" name="VendorName">
             </div>
-            <button type="submit" class="btn btn-primary mb-2">Add Genre</button>
+            <button type="submit" class="btn btn-primary mb-2">Add Vendor</button>
             @if (this.ViewData.ContainsKey(GlobalConstants.Error))
             {
                 <p class="text-danger">@this.ViewData[GlobalConstants.Error]</p>

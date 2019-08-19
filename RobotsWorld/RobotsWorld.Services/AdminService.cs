@@ -88,6 +88,25 @@ namespace RobotsWorld.Services
             return GlobalConstants.Failed;
         }
 
+        public async Task DeleteVendor(string vendorId, string username)
+        {
+            var vendor = this.Context.Vendors
+                .Include(x => x.Parts)
+                .FirstOrDefault(x => x.Id == vendorId);
+
+            var user = await this.UserManager.FindByNameAsync(username);
+            var roles = await this.UserManager.GetRolesAsync(user);
+
+            bool hasRights = roles.Any(x => x == GlobalConstants.Admin);
+            if (!hasRights)
+            {
+                throw new OperationCanceledException(GlobalConstants.UserHasNoRights);
+            }
+
+            this.Context.Vendors.Remove(vendor ?? throw new InvalidOperationException(GlobalConstants.RecordDoesntExist));
+            await this.Context.SaveChangesAsync();
+        }
+
         private async Task DeleteUsersEntities(string userId)
         {
             var robots = this.Context.Robots
