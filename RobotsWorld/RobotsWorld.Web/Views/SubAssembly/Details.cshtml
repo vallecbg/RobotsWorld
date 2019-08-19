@@ -1,0 +1,44 @@
+﻿@model SubAssemblyDetailsOutputModel
+@{
+    ViewData["Title"] = "Sub Assembly Details";
+}
+<section class="banner-area relative" id="home">
+    <div class="container">
+        <main class="pt-100 pb-100">
+            <div class="container dark-grey-text  card justify-content-start">
+
+                <!--Grid row-->
+                <div class="row wow fadeIn">
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-md-4 mb-4">
+
+                        <img src="@Model.ImageUrl" class="img-fluid" alt="">
+
+                    </div>
+
+                    <div class="col-md-8 mb-4">
+
+                        <!--Content-->
+                        <div class="p-4">
+
+                            <h1 class="lead font-weight-bold">@Model.Name</h1>
+
+                            <p>
+                                Total Parts Price: $@Model.TotalPrice <br />
+                                Total Parts Quantity: @Model.Quantity <br />
+                                Total Parts Weight: @Model.Weight kg <br />
+                                Total Parts: @Model.PartsCount <br />
+                            </p>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+        </main>
+        <!--Main layout-->
+    </div>
+
+</section>
+

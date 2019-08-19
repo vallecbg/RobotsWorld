@@ -11,6 +11,7 @@ using RobotsWorld.Models;
 using RobotsWorld.Services.Constants;
 using RobotsWorld.Services.Contracts;
 using RobotsWorld.ViewModels.InputModels.SubAssemblies;
+using RobotsWorld.ViewModels.OutputModels.SubAssemblies;
 
 namespace RobotsWorld.Services
 {
@@ -45,6 +46,17 @@ namespace RobotsWorld.Services
                 .First(x => x.Id == subAssemblyId);
 
             return subAssembly;
+        }
+
+        public SubAssemblyDetailsOutputModel GetSubAssemblyDetails(string id)
+        {
+            var subAssembly = this.Context.SubAssemblies
+                .Include(x => x.Parts)
+                .FirstOrDefault(x => x.Id == id);
+
+            var subAssemblyModel = this.Mapper.Map<SubAssemblyDetailsOutputModel>(subAssembly);
+
+            return subAssemblyModel;
         }
     }
 }

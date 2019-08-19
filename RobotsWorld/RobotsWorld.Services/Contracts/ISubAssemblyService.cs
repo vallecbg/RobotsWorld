@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RobotsWorld.Models;
 using RobotsWorld.ViewModels.InputModels.SubAssemblies;
+using RobotsWorld.ViewModels.OutputModels.SubAssemblies;
 
 namespace RobotsWorld.Services.Contracts
 {
@@ -12,5 +13,7 @@ namespace RobotsWorld.Services.Contracts
         Task<string> Create(SubAssemblyInputModel model);
 
         SubAssembly GetById(string subAssemblyId);
+
+        SubAssemblyDetailsOutputModel GetSubAssemblyDetails(string id);
     }
 }

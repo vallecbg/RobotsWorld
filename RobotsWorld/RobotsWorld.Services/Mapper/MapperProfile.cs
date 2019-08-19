@@ -108,6 +108,10 @@ namespace RobotsWorld.Services.Mapper
             CreateMap<TransportType, TransportTypeOutputModel>()
                 .ForMember(x => x.DeliveriesCount, cfg => cfg.MapFrom(x => x.Deliveries.Count))
                 .ForMember(x => x.Name, cfg => cfg.MapFrom(x => x.Name));
+
+            CreateMap<SubAssembly, SubAssemblyDetailsOutputModel>()
+                .ForMember(x => x.ImageUrl,cfg => cfg.MapFrom(x => x.ImageUrl))
+                .ForMember(x => x.PartsCount, cfg => cfg.MapFrom(x => x.Parts.Count));
         }
     }
 }

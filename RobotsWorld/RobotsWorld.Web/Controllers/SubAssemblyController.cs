@@ -44,5 +44,13 @@ namespace RobotsWorld.Web.Controllers
 
             return this.RedirectToAction("Details", "Robots", new{id = assembly.RobotId});
         }
+
+        [HttpGet]
+        public IActionResult Details(string id)
+        {
+            var subAssembly = this.subAssemblyService.GetSubAssemblyDetails(id);
+
+            return this.View(subAssembly);
+        }
     }
 }

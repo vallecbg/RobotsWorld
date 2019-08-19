@@ -10,6 +10,7 @@
                 <th>Weight</th>
                 <th>Parts Price</th>
                 <th class="sorting_asc_disabled sorting_desc_disabled">Add Part</th>
+                <th class="sorting_asc_disabled sorting_desc_disabled"></th>
             </tr>
         </thead>
         <tfoot>
@@ -19,6 +20,7 @@
                 <th>Weight</th>
                 <th>Parts Price</th>
                 <th class="sorting_asc_disabled sorting_desc_disabled">Add Part</th>
+                <th class="sorting_asc_disabled sorting_desc_disabled"></th>
             </tr>
         </tfoot>
         <tbody>
@@ -27,9 +29,10 @@
                 <tr>
                     <td>@subAssembly.Name</td>
                     <td>@subAssembly.Quantity</td>
-                    <td>@subAssembly.Weight KG</td>
+                    <td>@subAssembly.Weight kg</td>
                     <td>$@subAssembly.TotalPrice</td>
                     <td><a asp-controller="Part" asp-action="Create" asp-route-subAssemblyId="@subAssembly.Id" class="btn btn-success"><i class="fa fa-plus-square"></i></a></td>
+                    <td><a asp-controller="SubAssembly" asp-action="Details" asp-route-id="@subAssembly.Id" class="btn btn-warning text-white"><i class="fas fa-info-circle"></i> Details</a></td>
                 </tr>
             }
         </tbody>
