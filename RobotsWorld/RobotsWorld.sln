@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotsWorld.Data", "RobotsW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotsWorld.Web", "RobotsWorld.Web\RobotsWorld.Web.csproj", "{2D52E135-9EB8-40DA-98C5-C5ED4182B77C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotsWorld.Services", "RobotsWorld.Services\RobotsWorld.Services.csproj", "{AB10D4A8-1DF9-4BC9-B42B-D7BA1A8A9559}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotsWorld.Services", "RobotsWorld.Services\RobotsWorld.Services.csproj", "{AB10D4A8-1DF9-4BC9-B42B-D7BA1A8A9559}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotsWorld.ViewModels", "RobotsWorld.ViewModels\RobotsWorld.ViewModels.csproj", "{F9788E66-6B3B-45A3-8D65-5566C154785F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotsWorld.ViewModels", "RobotsWorld.ViewModels\RobotsWorld.ViewModels.csproj", "{F9788E66-6B3B-45A3-8D65-5566C154785F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotsWorld.Tests", "RobotsWorld.Tests\RobotsWorld.Tests.csproj", "{0F3ADD05-8B8D-43A2-B9C7-439D94E9E270}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{F9788E66-6B3B-45A3-8D65-5566C154785F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9788E66-6B3B-45A3-8D65-5566C154785F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9788E66-6B3B-45A3-8D65-5566C154785F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F3ADD05-8B8D-43A2-B9C7-439D94E9E270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F3ADD05-8B8D-43A2-B9C7-439D94E9E270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F3ADD05-8B8D-43A2-B9C7-439D94E9E270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F3ADD05-8B8D-43A2-B9C7-439D94E9E270}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
