@@ -36,6 +36,7 @@ namespace RobotsWorld.Web.Controllers
             bool checkVendorIsValid = this.vendorService.CheckVendorIsValid(model.VendorName);
             if (!this.ModelState.IsValid || !checkVendorIsValid)
             {
+                this.ViewData[GlobalConstants.SubAssemblyId] = model.SubAssemblyId;
                 return this.View();
             }
 

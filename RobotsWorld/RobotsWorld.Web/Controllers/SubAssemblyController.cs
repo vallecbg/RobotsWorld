@@ -35,6 +35,7 @@ namespace RobotsWorld.Web.Controllers
         {
             if (!this.ModelState.IsValid)
             {
+                this.ViewData[GlobalConstants.AssemblyId] = model.AssemblyId;
                 return this.View();
             }
 

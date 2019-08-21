@@ -21,6 +21,11 @@ namespace RobotsWorld.ViewModels.Constants
 
         public const string DisplayConfirmPassword = "Confirm Password";
 
+        //Properties names
+        public const string Name = "Name";
+        public const string Quantity = "Quantity";
+        public const string Weight = "Weight";
+
         //Robots
         public const int RobotNameMaxLength = 100;
         public const int RobotNameMinLength = 3;
