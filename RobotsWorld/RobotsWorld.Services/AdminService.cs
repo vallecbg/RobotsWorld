@@ -48,7 +48,6 @@ namespace RobotsWorld.Services
 
         public async Task DeleteUser(string userId)
         {
-            ;
             try
             {
                 var user = await this.UserManager.FindByIdAsync(userId);
