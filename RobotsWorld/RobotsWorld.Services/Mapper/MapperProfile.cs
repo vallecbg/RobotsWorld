@@ -12,6 +12,7 @@ using RobotsWorld.ViewModels.InputModels.Robots;
 using RobotsWorld.ViewModels.InputModels.SubAssemblies;
 using RobotsWorld.ViewModels.InputModels.Users;
 using RobotsWorld.ViewModels.OutputModels.Deliveries;
+using RobotsWorld.ViewModels.OutputModels.Parts;
 using RobotsWorld.ViewModels.OutputModels.Robots;
 using RobotsWorld.ViewModels.OutputModels.SubAssemblies;
 using RobotsWorld.ViewModels.OutputModels.TransportTypes;
@@ -112,6 +113,9 @@ namespace RobotsWorld.Services.Mapper
             CreateMap<SubAssembly, SubAssemblyDetailsOutputModel>()
                 .ForMember(x => x.ImageUrl,cfg => cfg.MapFrom(x => x.ImageUrl))
                 .ForMember(x => x.PartsCount, cfg => cfg.MapFrom(x => x.Parts.Count));
+
+            CreateMap<Part, PartOutputModel>()
+                .ForMember(x => x.VendorName, cfg => cfg.MapFrom(x => x.Vendor.Name));
         }
     }
 }

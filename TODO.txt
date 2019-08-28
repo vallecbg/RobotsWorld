@@ -8,6 +8,7 @@
 - Center the image in robots details
 - I can add table with website info like for contacts etc.
 - Add api support
+- If I have time i can add part delete
 
 *Minor*
 - I can add wallet where you can buy the robot and pay with money from the wallet

@@ -1,0 +1,34 @@
+﻿@model ICollection<PartOutputModel>
+
+
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Vendor Name</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Vendor Name</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            @foreach (var part in Model)
+            {
+                <tr>
+                    <td>@part.Name</td>
+                    <td>@part.Quantity</td>
+                    <td>$@part.Price</td>
+                    <td>@part.VendorName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

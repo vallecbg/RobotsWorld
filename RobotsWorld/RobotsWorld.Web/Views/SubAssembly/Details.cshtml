@@ -32,6 +32,14 @@
                             </p>
                         </div>
                     </div>
+
+                    @if (Model.PartsCount > 0)
+                    {
+                <div class="col-md-12 text-center">
+                    <h3 class="my-3 h3">Parts List</h3>
+                    @await Html.PartialAsync("SubAssemblyPartsPartial", Model.Parts)
+                </div>
+                    }
                     <!--Grid column-->
                 </div>
                 <!--Grid row-->
@@ -42,3 +50,10 @@
 
 </section>
 
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#dataTable1').DataTable({ responsive: true });
+        });
+    </script>
+}

@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using RobotsWorld.ViewModels.OutputModels.Parts;
 
 namespace RobotsWorld.ViewModels.OutputModels.SubAssemblies
 {
     public class SubAssemblyDetailsOutputModel
     {
+        public SubAssemblyDetailsOutputModel()
+        {
+            this.Parts = new HashSet<PartOutputModel>();
+        }
+
         public string Id { get; set; }
 
         public string Name { get; set; }
@@ -19,5 +25,7 @@ namespace RobotsWorld.ViewModels.OutputModels.SubAssemblies
         public int PartsCount { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public ICollection<PartOutputModel> Parts { get; set; }
     }
 }

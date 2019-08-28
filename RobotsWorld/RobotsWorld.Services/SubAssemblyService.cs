@@ -52,6 +52,7 @@ namespace RobotsWorld.Services
         {
             var subAssembly = this.Context.SubAssemblies
                 .Include(x => x.Parts)
+                .ThenInclude(x => x.Vendor)
                 .FirstOrDefault(x => x.Id == id);
 
             var subAssemblyModel = this.Mapper.Map<SubAssemblyDetailsOutputModel>(subAssembly);
