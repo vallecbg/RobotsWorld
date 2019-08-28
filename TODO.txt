@@ -1,23 +1,17 @@
 *For investigation*
 
-
 *Major*
 - Test all of the functionality in the azure website and write the tests in user service
 - Write the documentation about the website
-- Add in subassembly details showing the parts in a table
-- Increase the total price of assembly when ship
-- See the newsletter subscribe
-- Center the image in robots details
-- I can add table with website info like for contacts etc.
-- Add api support
 - If I have time i can add part delete
 
 *Minor*
-- I can add wallet where you can buy the robot and pay with money from the wallet
+- I can add wallet and shopping cart where you can buy the robot and pay with money from the wallet
 - Facebook posting like wall
 - Add categories
-- Make cart where you can buy already made robots using tables
-- I can add delivery of the robots using google maps for starting point and end point and also use the maps in the about us page
 - I can add ensurance of the robots and notification when you have to pay
 - Get the images in the footer from somewhere
+- Center the image in robots details
+- Increase the total price of assembly when ship
+- Add api support
 - I can use this https://developer.here.com/api-explorer/rest/routing for calculating the distance
