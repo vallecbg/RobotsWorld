@@ -12,6 +12,7 @@ using RobotsWorld.Services.Constants;
 using RobotsWorld.Services.Contracts;
 using RobotsWorld.ViewModels.InputModels;
 using RobotsWorld.ViewModels.InputModels.Users;
+using RobotsWorld.ViewModels.OutputModels.Chatrooms;
 using RobotsWorld.ViewModels.OutputModels.Users;
 
 namespace RobotsWorld.Services
@@ -87,6 +88,17 @@ namespace RobotsWorld.Services
                 .Name;
 
             return name;
+        }
+
+        public IEnumerable<ChatroomMessageOutputModel> GetAllChatroomMessages()
+        {
+            var allMessages = this.Context.ChatRoomMessages
+                .OrderBy(x => x.PublishedOn)
+                .ToList();
+
+            var result = Mapper.Map<IList<ChatroomMessageOutputModel>>(allMessages);
+
+            return result;
         }
     }
 }

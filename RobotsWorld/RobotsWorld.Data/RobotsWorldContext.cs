@@ -17,6 +17,7 @@ namespace RobotsWorld.Data
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<TransportType> TransportTypes { get; set; }
+        public DbSet<ChatRoomMessage> ChatRoomMessages { get; set; }
 
 
         public RobotsWorldContext(DbContextOptions options)

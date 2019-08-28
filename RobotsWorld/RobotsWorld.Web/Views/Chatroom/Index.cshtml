@@ -1,0 +1,43 @@
+﻿@using RobotsWorld.Services.Contracts
+
+@inject IUserService UserService
+@{
+    ViewData["Title"] = "Chat Room";
+    var chatroomMessages = UserService.GetAllChatroomMessages();
+}
+
+<section class="banner-area" id="home">
+    <div class="container fullscreen pt-50">
+        <h2 class="text-center text-light" style="text-shadow: 2px 2px 5px black">Chat Room</h2>
+        <div class="messaging">
+            <div class="inbox_msg card col-md-12 border border-dark">
+                <div class="mesgs">
+                    <div class="msg_history" id="messageBox" style="overflow:auto">
+                        <div class="received_msg">
+                            <div class="received_withd_msg">
+                                @foreach (var message in chatroomMessages)
+                                {
+                                    <p>@message.Username : @message.Content | @message.PublishedOn.ToString("t")</p>
+                                }
+                                <div id="messagesList"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="type_msg">
+                        <div class="input_msg_write">
+                            <input type="hidden" value="@this.User.Identity.Name" id="userInput" />
+                            <input type="text" id="messageInput" class="write_msg" placeholder="Type a message" />
+                            <button class="msg_send_btn" id="sendButton" type="button">Send <i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts{
+    <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+}

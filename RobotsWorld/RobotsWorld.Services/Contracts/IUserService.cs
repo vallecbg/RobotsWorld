@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using RobotsWorld.ViewModels.InputModels;
 using RobotsWorld.ViewModels.InputModels.Users;
+using RobotsWorld.ViewModels.OutputModels.Chatrooms;
 using RobotsWorld.ViewModels.OutputModels.Users;
 
 namespace RobotsWorld.Services.Contracts
@@ -20,5 +21,7 @@ namespace RobotsWorld.Services.Contracts
         void Logout();
 
         string GetName(string id);
+
+        IEnumerable<ChatroomMessageOutputModel> GetAllChatroomMessages();
     }
 }

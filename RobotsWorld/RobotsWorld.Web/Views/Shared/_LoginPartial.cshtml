@@ -11,11 +11,12 @@
 {
     <li><a class="nav-link btn btn-link menu-active" href="/Home/#myRobots">My Robots</a></li>
     <li><a class="nav-link btn btn-link menu-active" href="/Home/#createRobot">Create Robot</a></li>
-    
+    <li><a class="nav-link btn btn-link menu-active" asp-controller="Chatroom" asp-action="Index">Chat Room</a></li>
+
     @if (this.User.IsInRole(GlobalConstants.Admin))
-     {
-         <li><a class="nav-link btn btn-link menu-active" asp-controller="Admins" asp-action="Index" asp-area="Administration">Administration</a></li>
-     }
+    {
+        <li><a class="nav-link btn btn-link menu-active" asp-controller="Admins" asp-action="Index" asp-area="Administration">Administration</a></li>
+    }
     <li>
         <a class="nav-link btn btn-link menu-active" asp-controller="Users" asp-action="Details" asp-route-id="@userId">Hello @User.Identity.Name!</a>
     </li>

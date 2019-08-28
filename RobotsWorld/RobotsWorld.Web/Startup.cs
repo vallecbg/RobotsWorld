@@ -19,6 +19,7 @@ using RobotsWorld.Services;
 using RobotsWorld.Services.Contracts;
 using RobotsWorld.Services.Mapper;
 using RobotsWorld.Web.HelperMethods;
+using RobotsWorld.Web.Hubs;
 
 namespace RobotsWorld.Web
 {
@@ -80,6 +81,8 @@ namespace RobotsWorld.Web
                 options.LogoutPath = $"/Users/Logout";
             });
 
+            services.AddSignalR();
+
             services.Configure<SecurityStampValidatorOptions>(options => options.ValidationInterval = TimeSpan.FromSeconds(10));
             services.AddAuthentication()
                 .Services.ConfigureApplicationCookie(options =>
@@ -124,7 +127,10 @@ namespace RobotsWorld.Web
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chatHub");
+            });
         }
     }
 }
