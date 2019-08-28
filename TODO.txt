@@ -2,6 +2,8 @@
 
 
 *Major*
+- Test all of the functionality in the azure website and write the tests in user service
+- Write the documentation about the website
 - Add in subassembly details showing the parts in a table
 - Increase the total price of assembly when ship
 - See the newsletter subscribe
