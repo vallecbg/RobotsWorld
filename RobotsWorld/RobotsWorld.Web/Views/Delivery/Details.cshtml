@@ -2,15 +2,14 @@
 @using RobotsWorld.Web.HelperMethods
 @model DeliveryOutputModel
 @inject IDeliveryService DeliveryService
-@inject CalculationMethods CalculationMethods
 @{
     ViewData["Title"] = "Delivery Details";
     var startingLocation = Model.StartingPoint;
     var destinationLocation = Model.DestinationPoint;
-    var startingPointCoords = this.CalculationMethods.GetCoordinates(startingLocation);
+    var startingPointCoords = CalculationMethods.GetCoordinates(startingLocation);
     var startingLatitude = startingPointCoords[0];
     var startingLontitude = startingPointCoords[1];
-    var destinationPointCoords = this.CalculationMethods.GetCoordinates(destinationLocation);
+    var destinationPointCoords = CalculationMethods.GetCoordinates(destinationLocation);
     var destinationLatitude = destinationPointCoords[0];
     var destinationLontitude = destinationPointCoords[1];
     var transportType = Model.TransportTypeName ?? "unknown";

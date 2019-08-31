@@ -12,9 +12,9 @@ using RobotsWorld.Services.Constants;
 
 namespace RobotsWorld.Web.HelperMethods
 {
-    public class CalculationMethods
+    public static class CalculationMethods
     {
-        public double[] GetCoordinates(string locationName)
+        public static double[] GetCoordinates(string locationName)
         {
             var locationService = new GoogleLocationService(GlobalConstants.GoogleMapsApiKey);
             var point = locationService.GetLatLongFromAddress(locationName);

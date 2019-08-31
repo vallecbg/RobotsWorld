@@ -70,7 +70,6 @@ namespace RobotsWorld.Web
             services.AddTransient<IDeliveryService, DeliveryService>();
             services.AddTransient<ITransportTypeService, TransportTypeService>();
             services.AddTransient<IAdminService, AdminService>();
-            services.AddTransient<CalculationMethods>();
 
             //TODO: Add automapper here!
             services.AddAutoMapper(x => x.AddProfile<MapperProfile>());
