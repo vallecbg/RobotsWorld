@@ -1,8 +1,6 @@
 *For investigation*
 
 *Major*
-- Find all hardcoded values if there are some
-- Write the documentation about the website
 
 *Minor*
 - I can add wallet and shopping cart where you can buy the robot and pay with money from the wallet

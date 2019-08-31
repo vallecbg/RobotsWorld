@@ -29,7 +29,6 @@ namespace RobotsWorld.Web
 
                 SeedVendorsIfDbEmpty(serviceProvider).GetAwaiter().GetResult();
                 SeedTransportTypesIfDbEmpty(serviceProvider).GetAwaiter().GetResult();
-                //TODO: I can seed some information to the database
             }
 
             host.Run();

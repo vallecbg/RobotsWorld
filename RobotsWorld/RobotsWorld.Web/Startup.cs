@@ -60,7 +60,6 @@ namespace RobotsWorld.Web
                 .AddEntityFrameworkStores<RobotsWorldContext>()
                 .AddDefaultTokenProviders();
 
-            //TODO: Add services here!
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRobotService, RobotService>();
             services.AddTransient<IAssemblyService, AssemblyService>();
@@ -70,8 +69,7 @@ namespace RobotsWorld.Web
             services.AddTransient<IDeliveryService, DeliveryService>();
             services.AddTransient<ITransportTypeService, TransportTypeService>();
             services.AddTransient<IAdminService, AdminService>();
-
-            //TODO: Add automapper here!
+            
             services.AddAutoMapper(x => x.AddProfile<MapperProfile>());
 
             services.ConfigureApplicationCookie(options =>
