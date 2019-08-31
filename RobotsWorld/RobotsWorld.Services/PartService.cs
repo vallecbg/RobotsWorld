@@ -55,5 +55,15 @@ namespace RobotsWorld.Services
 
             return part;
         }
+
+        public async Task DeletePart(string subAssemblyId)
+        {
+            var part = this.Context.Parts
+                .Include(x => x.SubAssembly)
+                .First(x => x.SubAssemblyId == subAssemblyId);
+
+            this.Context.Parts.Remove(part);
+            await this.Context.SaveChangesAsync();
+        }
     }
 }

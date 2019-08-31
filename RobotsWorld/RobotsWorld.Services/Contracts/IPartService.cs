@@ -12,5 +12,7 @@ namespace RobotsWorld.Services.Contracts
         Task<string> Create(PartInputModel model);
 
         Part GetPartById(string partId);
+
+        Task DeletePart(string subAssemblyId);
     }
 }

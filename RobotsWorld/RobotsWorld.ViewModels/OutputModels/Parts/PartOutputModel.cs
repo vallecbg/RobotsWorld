@@ -8,6 +8,8 @@ namespace RobotsWorld.ViewModels.OutputModels.Parts
     {
         public string Id { get; set; }
 
+        public string SubAssemblyId { get; set; }
+
         public string Name { get; set; }
 
         public int Quantity { get; set; }

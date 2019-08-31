@@ -9,6 +9,7 @@
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Vendor Name</th>
+                <th class="sorting_asc_disabled sorting_desc_disabled"></th>
             </tr>
         </thead>
         <tfoot>
@@ -17,6 +18,7 @@
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Vendor Name</th>
+                <th class="sorting_asc_disabled sorting_desc_disabled"></th>
             </tr>
         </tfoot>
         <tbody>
@@ -27,6 +29,13 @@
                     <td>@part.Quantity</td>
                     <td>$@part.Price</td>
                     <td>@part.VendorName</td>
+                    <td>
+                        <form enctype="multipart/form-data" class="mx-auto" asp-controller="Part" asp-action="Delete" method="post">
+                            <input type="hidden" value="@part.Id" name="partId" id="partId"/>
+                            <input type="hidden" value="@part.SubAssemblyId" name="subAssemblyId" id="subAssemblyId"/>
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> </button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>

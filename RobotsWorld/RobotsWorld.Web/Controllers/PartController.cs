@@ -48,5 +48,18 @@ namespace RobotsWorld.Web.Controllers
 
             return this.RedirectToAction("Details", "Robots", new {id = robotId});
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(PartDeleteModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.RedirectToAction("Details", "SubAssembly", new {id = model.SubAssemblyId});
+            }
+
+            await this.partService.DeletePart(model.SubAssemblyId);
+
+            return this.RedirectToAction("Details", "SubAssembly", new { id = model.SubAssemblyId });
+        }
     }
 }
