@@ -56,11 +56,11 @@ namespace RobotsWorld.Services
             return part;
         }
 
-        public async Task DeletePart(string subAssemblyId)
+        public async Task DeletePart(string partId)
         {
             var part = this.Context.Parts
                 .Include(x => x.SubAssembly)
-                .First(x => x.SubAssemblyId == subAssemblyId);
+                .First(x => x.Id == partId);
 
             this.Context.Parts.Remove(part);
             await this.Context.SaveChangesAsync();

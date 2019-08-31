@@ -81,5 +81,28 @@ namespace RobotsWorld.Tests
                 .And.Subject.As<Part>()
                 .Name.Should().Be(part.Name);
         }
+
+        [Test]
+        public void DeletePart_Should_Succeed()
+        {
+            var part = new Part()
+            {
+                Id = "1",
+                Name = "asdasd",
+                Price = 2.50m,
+                Quantity = 2,
+                SubAssemblyId = "2323",
+                VendorId = "222"
+            };
+
+            this.Context.Parts.Add(part);
+            this.Context.SaveChanges();
+
+            var result = this.partService.DeletePart(part.Id);
+
+            var partFromDb = this.Context.Parts.FirstOrDefault();
+
+            partFromDb.Should().BeNull();
+        }
     }
 }

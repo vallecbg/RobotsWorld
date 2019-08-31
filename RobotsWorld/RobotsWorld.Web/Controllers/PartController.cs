@@ -57,7 +57,7 @@ namespace RobotsWorld.Web.Controllers
                 return this.RedirectToAction("Details", "SubAssembly", new {id = model.SubAssemblyId});
             }
 
-            await this.partService.DeletePart(model.SubAssemblyId);
+            await this.partService.DeletePart(model.PartId);
 
             return this.RedirectToAction("Details", "SubAssembly", new { id = model.SubAssemblyId });
         }

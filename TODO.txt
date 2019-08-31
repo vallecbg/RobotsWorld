@@ -4,7 +4,6 @@
 - Find all hardcoded values if there are some
 - Test all of the functionality in the azure website and write the tests in user service
 - Write the documentation about the website
-- If I have time i can add part delete
 
 *Minor*
 - I can add wallet and shopping cart where you can buy the robot and pay with money from the wallet
