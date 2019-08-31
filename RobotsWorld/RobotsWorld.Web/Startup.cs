@@ -61,16 +61,16 @@ namespace RobotsWorld.Web
                 .AddDefaultTokenProviders();
 
             //TODO: Add services here!
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IRobotService, RobotService>();
-            services.AddScoped<IAssemblyService, AssemblyService>();
-            services.AddScoped<ISubAssemblyService, SubAssemblyService>();
-            services.AddScoped<IPartService, PartService>();
-            services.AddScoped<IVendorService, VendorService>();
-            services.AddScoped<IDeliveryService, DeliveryService>();
-            services.AddScoped<ITransportTypeService, TransportTypeService>();
-            services.AddScoped<IAdminService, AdminService>();
-            services.AddScoped<CalculationMethods>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRobotService, RobotService>();
+            services.AddTransient<IAssemblyService, AssemblyService>();
+            services.AddTransient<ISubAssemblyService, SubAssemblyService>();
+            services.AddTransient<IPartService, PartService>();
+            services.AddTransient<IVendorService, VendorService>();
+            services.AddTransient<IDeliveryService, DeliveryService>();
+            services.AddTransient<ITransportTypeService, TransportTypeService>();
+            services.AddTransient<IAdminService, AdminService>();
+            services.AddTransient<CalculationMethods>();
 
             //TODO: Add automapper here!
             services.AddAutoMapper(x => x.AddProfile<MapperProfile>());
