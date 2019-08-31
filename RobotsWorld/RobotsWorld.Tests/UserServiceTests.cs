@@ -153,5 +153,48 @@ namespace RobotsWorld.Tests
             result.Should().NotBeNull()
                 .And.BeOfType<UserOutputModel>();
         }
+
+        [Test]
+        public void GetAllChatroomMessages_Should_Succeed()
+        {
+            var user = new User()
+            {
+                Id="1",
+                UserName = "gosho"
+            };
+
+            var chatroomMessages = new[]
+            {
+                new ChatRoomMessage()
+                {
+                    Id = "1",
+                    Username = user.UserName,
+                    Content = "asdasdasda",
+                    PublishedOn = DateTime.UtcNow.AddDays(1)
+                },
+                new ChatRoomMessage()
+                {
+                    Id = "2",
+                    Username = user.UserName,
+                    Content = "qqweqweqw",
+                    PublishedOn = DateTime.UtcNow.AddHours(1)
+                },
+                new ChatRoomMessage()
+                {
+                    Id = "3",
+                    Username = user.UserName,
+                    Content = "134354657687",
+                    PublishedOn = DateTime.UtcNow
+                },
+            };
+
+            this.userManager.CreateAsync(user).GetAwaiter();
+            this.Context.ChatRoomMessages.AddRange(chatroomMessages);
+            this.Context.SaveChanges();
+
+            var result = this.userService.GetAllChatroomMessages();
+
+            result.Should().HaveCount(chatroomMessages.Length);
+        }
     }
 }
