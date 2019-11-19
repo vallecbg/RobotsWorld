@@ -112,7 +112,8 @@ namespace RobotsWorld.Services.Mapper
 
             CreateMap<SubAssembly, SubAssemblyDetailsOutputModel>()
                 .ForMember(x => x.ImageUrl,cfg => cfg.MapFrom(x => x.ImageUrl))
-                .ForMember(x => x.PartsCount, cfg => cfg.MapFrom(x => x.Parts.Count));
+                .ForMember(x => x.PartsCount, cfg => cfg.MapFrom(x => x.Parts.Count))
+                .ForMember(x => x.TotalPrice, cfg => cfg.MapFrom(x => x.PartsPrice));
 
             CreateMap<Part, PartOutputModel>()
                 .ForMember(x => x.VendorName, cfg => cfg.MapFrom(x => x.Vendor.Name));
