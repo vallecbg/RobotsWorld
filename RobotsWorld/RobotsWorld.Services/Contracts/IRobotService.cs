@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using RobotsWorld.Models;
 using RobotsWorld.ViewModels.InputModels.Robots;
 using RobotsWorld.ViewModels.OutputModels.Robots;
 
@@ -18,6 +19,8 @@ namespace RobotsWorld.Services.Contracts
         void DeleteRobot(string robotId, string username);
 
         void EditRobot(RobotEditModel model);
+
+        void DeleteAllRobotRelations(Robot robot);
 
         RobotEditModel GetRobotToEdit(string robotId);
 

@@ -72,6 +72,7 @@ namespace RobotsWorld.Services
         {
             var robot = this.Context.Robots
                 .Include(x => x.User)
+                .Include(x => x.Deliveries)
                 .Include(x => x.Assembly)
                 .ThenInclude(x => x.SubAssemblies)
                 .ThenInclude(x => x.Parts)
@@ -89,7 +90,15 @@ namespace RobotsWorld.Services
                 throw new InvalidOperationException(GlobalConstants.UserHasNoRights);
             }
 
+            DeleteAllRobotRelations(robot);
+
+            this.Context.SaveChangesAsync().GetAwaiter().GetResult();
+        }
+
+        public void DeleteAllRobotRelations(Robot robot)
+        {
             this.Context.Remove(robot);
+            this.Context.RemoveRange(robot.Deliveries);
             if (robot.Assembly != null)
             {
                 this.Context.Remove(robot.Assembly);
@@ -99,8 +108,6 @@ namespace RobotsWorld.Services
                     this.Context.RemoveRange(robot.Assembly.SubAssemblies.SelectMany(x => x.Parts));
                 }
             }
-
-            this.Context.SaveChangesAsync().GetAwaiter().GetResult();
         }
 
         public RobotEditModel GetRobotToEdit(string robotId)

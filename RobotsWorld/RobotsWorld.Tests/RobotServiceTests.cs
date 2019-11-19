@@ -73,13 +73,21 @@ namespace RobotsWorld.Tests
                 UserName = "author"
             };
 
+            var delivery = new Delivery()
+            {
+                Id = "1",
+                Price = 2.5m,
+                SentOn = DateTime.UtcNow
+            };
+
             var robot = new Robot()
             {
                 Id = "1",
                 UserId = user.Id,
                 Axes = 2,
                 Name = "myRobot",
-                SerialNumber = "2323"
+                SerialNumber = "2323",
+                Deliveries = new List<Delivery>() { delivery }
             };
 
             userManager.CreateAsync(admin).GetAwaiter();
@@ -126,7 +134,7 @@ namespace RobotsWorld.Tests
 
             var assembly = new Assembly()
             {
-                Id="1",
+                Id = "1",
                 RobotId = robot.Id
             };
 
@@ -141,13 +149,13 @@ namespace RobotsWorld.Tests
 
             var vendor = new Vendor()
             {
-                Id="1",
+                Id = "1",
                 Name = "IBM"
             };
 
             var part = new Part()
             {
-                Id="1",
+                Id = "1",
                 Price = 2.50m,
                 Quantity = 2,
                 SubAssemblyId = subAssembly.Id,
@@ -246,7 +254,7 @@ namespace RobotsWorld.Tests
                 .Name.Should().BeEquivalentTo(robotEditModel.Name);
         }
 
-        
+
 
         [Test]
         public void GetUserRobots_Should_Succeed()
@@ -343,7 +351,7 @@ namespace RobotsWorld.Tests
                 SerialNumber = "2323",
                 Assembly = new Assembly()
                 {
-                    Id="1"
+                    Id = "1"
                 }
             };
 
@@ -354,7 +362,7 @@ namespace RobotsWorld.Tests
 
             result.Should().Be(1);
         }
-        
+
         [Test]
         public void CheckUserIsOwnerOfRobot_Should_Succeed()
         {
