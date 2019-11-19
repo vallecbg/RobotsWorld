@@ -60,6 +60,9 @@ namespace RobotsWorld.Web
                 .AddEntityFrameworkStores<RobotsWorldContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddMvc(options =>
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
+
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRobotService, RobotService>();
             services.AddTransient<IAssemblyService, AssemblyService>();
