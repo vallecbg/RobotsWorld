@@ -3,6 +3,8 @@
 
 ## Type - Site for Robot Assembly and Management
 
+Demo: https://robotsworld.azurewebsites.net
+
 ## Demo Users
 - Username: usertest
 - Password: user123
