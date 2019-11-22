@@ -7,8 +7,5 @@
 - Facebook posting like wall
 - Add categories
 - I can add ensurance of the robots and notification when you have to pay
-- Get the images in the footer from somewhere
-- Center the image in robots details
-- Increase the total price of assembly when ship
 - Add api support
 - I can use this https://developer.here.com/api-explorer/rest/routing for calculating the distance
